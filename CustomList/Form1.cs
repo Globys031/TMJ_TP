@@ -45,10 +45,10 @@ namespace CustomList
             // missing an entry for images as well
             // table.Category(0) is a place holder. Instead of a 0 it will later
             // be the index of the actual category we want to query
-            InOutUtils.InsertBasicEntry(table.getCategory(0),
+          /*  InOutUtils.InsertBasicEntry(table.GetCategory(0),
                 EntryNameInput.Text, 
                 ScoreEntry.Text, 
-                descriptionEntry.Text);
+                descriptionEntry.Text);*/
         }
 
         // later here we will have buttons for removal and modification
