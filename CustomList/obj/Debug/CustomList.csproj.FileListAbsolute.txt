@@ -1,0 +1,4 @@
+C:\Users\37060\OneDrive\Desktop\Programu sistemu inzinerija\projektorep\TMJ_TP\CustomList\obj\Debug\CustomList.csprojAssemblyReference.cache
+C:\Users\37060\OneDrive\Desktop\Programu sistemu inzinerija\projektorep\TMJ_TP\CustomList\obj\Debug\CustomList.Properties.Resources.resources
+C:\Users\37060\OneDrive\Desktop\Programu sistemu inzinerija\projektorep\TMJ_TP\CustomList\obj\Debug\CustomList.csproj.GenerateResource.cache
+C:\Users\37060\OneDrive\Desktop\Programu sistemu inzinerija\projektorep\TMJ_TP\CustomList\obj\Debug\CustomList.csproj.CoreCompileInputs.cache
