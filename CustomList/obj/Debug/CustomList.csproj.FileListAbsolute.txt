@@ -7,3 +7,4 @@ C:\Users\mtunk\source\repos\TMJ_TP\CustomList\bin\Debug\CustomList.exe
 C:\Users\mtunk\source\repos\TMJ_TP\CustomList\bin\Debug\CustomList.pdb
 C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Debug\CustomList.exe
 C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Debug\CustomList.pdb
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Debug\CustomList.Form1.resources
