@@ -27,5 +27,9 @@ namespace CustomList
         {
             this.name = Name;
         }
+        public string SelectedColumn(int index)
+        {
+            return this.additionalColumns[index];
+        }
     }
 }

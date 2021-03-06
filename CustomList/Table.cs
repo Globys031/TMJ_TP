@@ -20,20 +20,30 @@ namespace CustomList
         // categories is an array so that multiple categories can be held
         // key is string because key will be name of the entry
         // value is List<Entry> because some entries might have the same name
-        private Dictionary<string, List<Entry>>[] Categories;
-
+        private Dictionary<string, List<Entry>>[] categories;
+        
         public Table()
         {
             // at the start it's enough for it to have 3 categories by default
             // later it'll double its size as needed
-            Categories = new Dictionary<string, List<Entry>>[2];
+            categories = new Dictionary<string, List<Entry>>[2];
+            
         }
-
-        public Dictionary<string, List<Entry>> GetCategory(int i)
+        public List<Entry> Sort(bool ascending, int CIndex, int ColumnIndex)
         {
-            return Categories[i];
+            List<Entry> list = categories[CIndex].SelectMany(x => x.Value).ToList();
+            List<Entry> sortedlist;
+            if (ascending)
+                sortedlist = list.OrderBy(x => x.SelectedColumn(ColumnIndex)).ToList();
+            else
+                sortedlist = list.OrderByDescending(x => x.SelectedColumn(ColumnIndex)).ToList();
+            return sortedlist;
         }
-
+        public List<Entry> DataSearch(string indicator, int CIndex)
+        {
+            //List<Entry> list = categories[CIndex].SelectMany(x => x.Value)
+            return null;
+        }
 
     }
 
