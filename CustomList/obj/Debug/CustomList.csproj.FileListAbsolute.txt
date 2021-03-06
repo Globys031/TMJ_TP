@@ -1,4 +1,10 @@
-C:\Users\37060\OneDrive\Desktop\Programu sistemu inzinerija\projektorep\TMJ_TP\CustomList\obj\Debug\CustomList.csprojAssemblyReference.cache
-C:\Users\37060\OneDrive\Desktop\Programu sistemu inzinerija\projektorep\TMJ_TP\CustomList\obj\Debug\CustomList.Properties.Resources.resources
-C:\Users\37060\OneDrive\Desktop\Programu sistemu inzinerija\projektorep\TMJ_TP\CustomList\obj\Debug\CustomList.csproj.GenerateResource.cache
-C:\Users\37060\OneDrive\Desktop\Programu sistemu inzinerija\projektorep\TMJ_TP\CustomList\obj\Debug\CustomList.csproj.CoreCompileInputs.cache
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Debug\CustomList.csprojAssemblyReference.cache
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Debug\CustomList.Properties.Resources.resources
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Debug\CustomList.csproj.GenerateResource.cache
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Debug\CustomList.csproj.CoreCompileInputs.cache
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\bin\Debug\CustomList.exe.config
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\bin\Debug\CustomList.exe
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\bin\Debug\CustomList.pdb
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Debug\CustomList.exe
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Debug\CustomList.pdb
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Debug\CustomList.Form1.resources
