@@ -20,7 +20,7 @@ namespace CustomList
         // categories is an array so that multiple categories can be held
         // key is string because key will be name of the entry
         // value is List<Entry> because some entries might have the same name
-        private Dictionary<string, List<Entry>>[] categories;
+        public Dictionary<string, List<Entry>>[] categories { get; private set; }
         
         public Table()
         {

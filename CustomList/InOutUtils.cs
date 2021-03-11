@@ -11,7 +11,7 @@ namespace CustomList
     {
         // function meant for inserting only the basic entries that we have by default
         // (missing image entry)
-        internal static void InsertBasicEntry(Dictionary<string, List<Entry>> category, 
+        internal static void ReadBasicEntry(Dictionary<string, List<Entry>> category, 
             string name, 
             int score, 
             string description)
@@ -25,5 +25,6 @@ namespace CustomList
             category[name].Add(entry);
 
         }
+
     }
 }
