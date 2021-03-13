@@ -7,15 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using System.Runtime.InteropServices;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace CustomList
 {
     public partial class Form1 : Form
     {
         #region variables
+        SqlConnection connection;
         private Table table;
+        private string connectionLine;
         #endregion
 
         #region Constructor
@@ -40,23 +43,103 @@ namespace CustomList
 
         #endregion
 
+        public string ConnectionVal(string name)
+        {
+            return ConfigurationManager.ConnectionStrings["ListDatabase.Properties.Settings.ListDatabaseConnectionString"].ConnectionString;
+        }
 
         #region buttons
+        private void AddCategory_Click(object sender, EventArgs e)
+        {
+            string query = "INSERT INTO Category VALUES (@Category)";
+
+            using (connection = new SqlConnection(ConnectionVal("Sample")))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Category", InsCatBox.Text);
+                command.ExecuteScalar();
+            }
+        }
+        private void Add_Entry_Click(object sender, EventArgs e)
+        {
+            string query = "INSERT INTO CategoryEntry VALUES (@CategoryId, @EntryId)";
+
+            using(connection = new SqlConnection(ConnectionVal("Sample")))
+            using(SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@CategoryId", listCat.SelectedValue);
+                command.Parameters.AddWithValue("@EntryId", listEntries.SelectedValue);
+                command.ExecuteScalar();
+            }
+
+        }
         private void AddEntry_Click(object sender, EventArgs e)
         {
             // missing an entry for images as well
             // table.Category(0) is a place holder. Instead of a 0 it will later
             // be the index of the actual category we want to query
-          /*  InOutUtils.InsertBasicEntry(table.GetCategory(0),
-                EntryNameInput.Text, 
-                ScoreEntry.Text, 
-                descriptionEntry.Text);*/
+            /*  InOutUtils.InsertBasicEntry(table.GetCategory(0),
+                  EntryNameInput.Text, 
+                  ScoreEntry.Text, 
+                  descriptionEntry.Text);*/
+
+            using(connection = new SqlConnection(connectionLine))
+            using(SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Category",connectionLine))
+            {
+              
+            }
         }
 
         // later here we will have buttons for removal and modification
 
         #endregion
 
+        private void ShowCategory()
+        {
+            using(connection = new SqlConnection(ConnectionVal("Sample")))
+            using(SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Category", connection))
+            {
+                DataTable catTable = new DataTable();
+                adapter.Fill(catTable);
+
+                listCat.DisplayMember = "name";
+                listCat.ValueMember = "Id";
+                listCat.DataSource = catTable;
+            }
+        }
+        private void ShowEntries()
+        {
+            using (connection = new SqlConnection(ConnectionVal("Sample")))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Entry", connection))
+            {
+                DataTable entTable = new DataTable();
+                adapter.Fill(entTable);
+
+                listEntries.DisplayMember = "name";
+                listEntries.ValueMember = "Id";
+                listEntries.DataSource = entTable;
+            }
+        }
+        private void ShowCategoryEntries()
+        {
+            string query = "SELECT a.name FROM Entry a INNER JOIN CategoryEntry b ON a.Id = b.EntryId" +
+                "WHERE b.CategoryId = @CategoryId";
+            using (connection = new SqlConnection(ConnectionVal("Sample")))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+            {
+                command.Parameters.AddWithValue("@CategoryId", listCat.SelectedValue);
+                DataTable catEntTable = new DataTable();
+                adapter.Fill(catEntTable);
+
+                listCatEnt.DisplayMember = "name";
+                listCatEnt.ValueMember = "Id";
+                listCatEnt.DataSource = catEntTable;
+                
+            }
+        }
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
          (
@@ -72,6 +155,8 @@ namespace CustomList
         private void Form1_Load(object sender, EventArgs e)
         {
             Region = new Region(new Rectangle(0, 0, Width, Height));
+            ShowCategory();
+            ShowEntries();
         }
 
         private void b_Dashboard_Click(object sender, EventArgs e)
@@ -143,5 +228,6 @@ namespace CustomList
         {
             b_custom.BackColor = Color.FromArgb(23, 30, 54);
         }
+
     }
 }
