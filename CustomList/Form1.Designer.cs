@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.b_custom = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.pn_Nav = new System.Windows.Forms.FlowLayoutPanel();
+            this.b_custom = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.b_TvSeries = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.b_Dashboard = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.pfpic = new System.Windows.Forms.PictureBox();
+            this.PnlFormLoader = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pfpic)).BeginInit();
@@ -58,6 +59,15 @@
             this.panel1.Size = new System.Drawing.Size(951, 97);
             this.panel1.TabIndex = 0;
             // 
+            // pn_Nav
+            // 
+            this.pn_Nav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.pn_Nav.Location = new System.Drawing.Point(103, 3);
+            this.pn_Nav.Name = "pn_Nav";
+            this.pn_Nav.Size = new System.Drawing.Size(178, 3);
+            this.pn_Nav.TabIndex = 1;
+            this.pn_Nav.Visible = false;
+            // 
             // b_custom
             // 
             this.b_custom.Dock = System.Windows.Forms.DockStyle.Left;
@@ -74,24 +84,6 @@
             this.b_custom.UseVisualStyleBackColor = true;
             this.b_custom.Click += new System.EventHandler(this.b_custom_Click);
             this.b_custom.Leave += new System.EventHandler(this.b_custom_Leave);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.pfpic);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(97, 97);
-            this.panel2.TabIndex = 0;
-            // 
-            // pn_Nav
-            // 
-            this.pn_Nav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.pn_Nav.Location = new System.Drawing.Point(103, 3);
-            this.pn_Nav.Name = "pn_Nav";
-            this.pn_Nav.Size = new System.Drawing.Size(178, 3);
-            this.pn_Nav.TabIndex = 1;
-            this.pn_Nav.Visible = false;
             // 
             // button3
             // 
@@ -165,6 +157,15 @@
             this.b_Dashboard.Click += new System.EventHandler(this.b_Dashboard_Click);
             this.b_Dashboard.Leave += new System.EventHandler(this.b_Dashboard_Leave);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.pfpic);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(97, 97);
+            this.panel2.TabIndex = 0;
+            // 
             // pfpic
             // 
             this.pfpic.Image = global::CustomList.Properties.Resources.Untitled_11;
@@ -175,12 +176,21 @@
             this.pfpic.TabIndex = 0;
             this.pfpic.TabStop = false;
             // 
+            // PnlFormLoader
+            // 
+            this.PnlFormLoader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PnlFormLoader.Location = new System.Drawing.Point(0, 97);
+            this.PnlFormLoader.Name = "PnlFormLoader";
+            this.PnlFormLoader.Size = new System.Drawing.Size(951, 479);
+            this.PnlFormLoader.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(951, 577);
+            this.Controls.Add(this.PnlFormLoader);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -188,6 +198,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Custom List";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pfpic)).EndInit();
@@ -206,6 +217,7 @@
         private System.Windows.Forms.Button b_TvSeries;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.FlowLayoutPanel pn_Nav;
+        private System.Windows.Forms.Panel PnlFormLoader;
     }
 }
 

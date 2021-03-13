@@ -1,0 +1,13 @@
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\bin\Release\ListDatabase.mdf
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\bin\Release\ListDatabase_log.ldf
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\bin\Release\CustomList.exe.config
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\bin\Release\CustomList.exe
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\bin\Release\CustomList.pdb
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Release\CustomList.csprojAssemblyReference.cache
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Release\CustomList.ChildForm.resources
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Release\CustomList.Form1.resources
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Release\CustomList.Properties.Resources.resources
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Release\CustomList.csproj.GenerateResource.cache
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Release\CustomList.csproj.CoreCompileInputs.cache
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Release\CustomList.exe
+C:\Users\mtunk\source\repos\TMJ_TP\CustomList\obj\Release\CustomList.pdb
