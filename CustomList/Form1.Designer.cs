@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pn_Nav = new System.Windows.Forms.FlowLayoutPanel();
             this.b_custom = new System.Windows.Forms.Button();
@@ -38,14 +37,23 @@
             this.b_Dashboard = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pfpic = new System.Windows.Forms.PictureBox();
-            this.PnlFormLoader = new System.Windows.Forms.Panel();
-            this.windowHandle = new System.Windows.Forms.Panel();
-            this.btnCloseForm = new System.Windows.Forms.Button();
-            this.btnMinimizeForm = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.InsNameLabel = new System.Windows.Forms.Label();
+            this.InsNameBox = new System.Windows.Forms.TextBox();
+            this.InsScoreLabel = new System.Windows.Forms.Label();
+            this.InsDesLabel = new System.Windows.Forms.Label();
+            this.InsScoreBox = new System.Windows.Forms.TextBox();
+            this.InsDesBox = new System.Windows.Forms.TextBox();
+            this.AddEntry = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.InsCatBox = new System.Windows.Forms.TextBox();
+            this.AddCategory = new System.Windows.Forms.Button();
+            this.listCat = new System.Windows.Forms.ListBox();
+            this.listEntries = new System.Windows.Forms.ListBox();
+            this.listCatEnt = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pfpic)).BeginInit();
-            this.windowHandle.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -59,7 +67,7 @@
             this.panel1.Controls.Add(this.b_Dashboard);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 39);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(951, 97);
             this.panel1.TabIndex = 0;
@@ -181,78 +189,164 @@
             this.pfpic.TabIndex = 0;
             this.pfpic.TabStop = false;
             // 
-            // PnlFormLoader
+            // label1
             // 
-            this.PnlFormLoader.Location = new System.Drawing.Point(0, 142);
-            this.PnlFormLoader.Name = "PnlFormLoader";
-            this.PnlFormLoader.Size = new System.Drawing.Size(951, 479);
-            this.PnlFormLoader.TabIndex = 1;
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(103, 104);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Insert Data:";
             // 
-            // windowHandle
+            // InsNameLabel
             // 
-            this.windowHandle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.windowHandle.Controls.Add(this.btnMinimizeForm);
-            this.windowHandle.Controls.Add(this.btnCloseForm);
-            this.windowHandle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.windowHandle.Location = new System.Drawing.Point(0, 0);
-            this.windowHandle.Name = "windowHandle";
-            this.windowHandle.Size = new System.Drawing.Size(951, 39);
-            this.windowHandle.TabIndex = 0;
-            this.windowHandle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.windowHandle_MouseDown);
-            this.windowHandle.MouseLeave += new System.EventHandler(this.windowHandle_MouseLeave);
-            this.windowHandle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.windowHandle_MouseMove);
-            this.windowHandle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.windowHandle_MouseUp);
+            this.InsNameLabel.AutoSize = true;
+            this.InsNameLabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.InsNameLabel.Location = new System.Drawing.Point(103, 166);
+            this.InsNameLabel.Name = "InsNameLabel";
+            this.InsNameLabel.Size = new System.Drawing.Size(45, 17);
+            this.InsNameLabel.TabIndex = 2;
+            this.InsNameLabel.Text = "Name";
             // 
-            // btnCloseForm
+            // InsNameBox
             // 
-            this.btnCloseForm.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCloseForm.FlatAppearance.BorderSize = 0;
-            this.btnCloseForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCloseForm.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseForm.Image")));
-            this.btnCloseForm.Location = new System.Drawing.Point(900, 0);
-            this.btnCloseForm.Name = "btnCloseForm";
-            this.btnCloseForm.Size = new System.Drawing.Size(51, 39);
-            this.btnCloseForm.TabIndex = 0;
-            this.btnCloseForm.Text = "\r\n";
-            this.btnCloseForm.UseVisualStyleBackColor = true;
-            this.btnCloseForm.Click += new System.EventHandler(this.btnCloseForm_Click);
+            this.InsNameBox.Location = new System.Drawing.Point(192, 166);
+            this.InsNameBox.Name = "InsNameBox";
+            this.InsNameBox.Size = new System.Drawing.Size(100, 22);
+            this.InsNameBox.TabIndex = 3;
             // 
-            // btnMinimizeForm
+            // InsScoreLabel
             // 
-            this.btnMinimizeForm.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnMinimizeForm.FlatAppearance.BorderSize = 0;
-            this.btnMinimizeForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimizeForm.Font = new System.Drawing.Font("Wide Latin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMinimizeForm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnMinimizeForm.Location = new System.Drawing.Point(849, 0);
-            this.btnMinimizeForm.Name = "btnMinimizeForm";
-            this.btnMinimizeForm.Size = new System.Drawing.Size(51, 39);
-            this.btnMinimizeForm.TabIndex = 1;
-            this.btnMinimizeForm.Text = "_";
-            this.btnMinimizeForm.UseVisualStyleBackColor = true;
-            this.btnMinimizeForm.Click += new System.EventHandler(this.btnMinimizeForm_Click);
+            this.InsScoreLabel.AutoSize = true;
+            this.InsScoreLabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.InsScoreLabel.Location = new System.Drawing.Point(103, 206);
+            this.InsScoreLabel.Name = "InsScoreLabel";
+            this.InsScoreLabel.Size = new System.Drawing.Size(45, 17);
+            this.InsScoreLabel.TabIndex = 4;
+            this.InsScoreLabel.Text = "Score";
+            // 
+            // InsDesLabel
+            // 
+            this.InsDesLabel.AutoSize = true;
+            this.InsDesLabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.InsDesLabel.Location = new System.Drawing.Point(103, 244);
+            this.InsDesLabel.Name = "InsDesLabel";
+            this.InsDesLabel.Size = new System.Drawing.Size(79, 17);
+            this.InsDesLabel.TabIndex = 5;
+            this.InsDesLabel.Text = "Description";
+            // 
+            // InsScoreBox
+            // 
+            this.InsScoreBox.Location = new System.Drawing.Point(192, 206);
+            this.InsScoreBox.Name = "InsScoreBox";
+            this.InsScoreBox.Size = new System.Drawing.Size(100, 22);
+            this.InsScoreBox.TabIndex = 6;
+            // 
+            // InsDesBox
+            // 
+            this.InsDesBox.Location = new System.Drawing.Point(192, 244);
+            this.InsDesBox.Name = "InsDesBox";
+            this.InsDesBox.Size = new System.Drawing.Size(100, 22);
+            this.InsDesBox.TabIndex = 7;
+            // 
+            // AddEntry
+            // 
+            this.AddEntry.Location = new System.Drawing.Point(146, 281);
+            this.AddEntry.Name = "AddEntry";
+            this.AddEntry.Size = new System.Drawing.Size(102, 23);
+            this.AddEntry.TabIndex = 8;
+            this.AddEntry.Text = "Insert data";
+            this.AddEntry.UseVisualStyleBackColor = true;
+            this.AddEntry.Click += new System.EventHandler(this.Add_Entry_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(103, 130);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 17);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Category";
+            // 
+            // InsCatBox
+            // 
+            this.InsCatBox.Location = new System.Drawing.Point(192, 130);
+            this.InsCatBox.Name = "InsCatBox";
+            this.InsCatBox.Size = new System.Drawing.Size(100, 22);
+            this.InsCatBox.TabIndex = 10;
+            // 
+            // AddCategory
+            // 
+            this.AddCategory.Location = new System.Drawing.Point(325, 128);
+            this.AddCategory.Name = "AddCategory";
+            this.AddCategory.Size = new System.Drawing.Size(135, 23);
+            this.AddCategory.TabIndex = 11;
+            this.AddCategory.Text = "Add category";
+            this.AddCategory.UseVisualStyleBackColor = true;
+            this.AddCategory.Click += new System.EventHandler(this.AddCategory_Click);
+            // 
+            // listCat
+            // 
+            this.listCat.FormattingEnabled = true;
+            this.listCat.ItemHeight = 16;
+            this.listCat.Location = new System.Drawing.Point(486, 166);
+            this.listCat.Name = "listCat";
+            this.listCat.Size = new System.Drawing.Size(145, 164);
+            this.listCat.TabIndex = 12;
+            // 
+            // listEntries
+            // 
+            this.listEntries.FormattingEnabled = true;
+            this.listEntries.ItemHeight = 16;
+            this.listEntries.Location = new System.Drawing.Point(699, 166);
+            this.listEntries.Name = "listEntries";
+            this.listEntries.Size = new System.Drawing.Size(145, 164);
+            this.listEntries.TabIndex = 13;
+            // this.listEntries.SelectedIndexChanged += new System.EventHandler(this.listEntries_SelectedIndexChanged);
+            // 
+            // listCatEnt
+            // 
+            this.listCatEnt.FormattingEnabled = true;
+            this.listCatEnt.ItemHeight = 16;
+            this.listCatEnt.Location = new System.Drawing.Point(598, 370);
+            this.listCatEnt.Name = "listCatEnt";
+            this.listCatEnt.Size = new System.Drawing.Size(145, 164);
+            this.listCatEnt.TabIndex = 14;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(951, 615);
+            this.ClientSize = new System.Drawing.Size(951, 577);
+            this.Controls.Add(this.listCatEnt);
+            this.Controls.Add(this.listEntries);
+            this.Controls.Add(this.listCat);
+            this.Controls.Add(this.AddCategory);
+            this.Controls.Add(this.InsCatBox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.AddEntry);
+            this.Controls.Add(this.InsDesBox);
+            this.Controls.Add(this.InsScoreBox);
+            this.Controls.Add(this.InsDesLabel);
+            this.Controls.Add(this.InsScoreLabel);
+            this.Controls.Add(this.InsNameBox);
+            this.Controls.Add(this.InsNameLabel);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.windowHandle);
-            this.Controls.Add(this.PnlFormLoader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Custom List";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pfpic)).EndInit();
-            this.windowHandle.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -267,10 +361,19 @@
         private System.Windows.Forms.Button b_TvSeries;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.FlowLayoutPanel pn_Nav;
-        private System.Windows.Forms.Panel PnlFormLoader;
-        private System.Windows.Forms.Panel windowHandle;
-        private System.Windows.Forms.Button btnCloseForm;
-        private System.Windows.Forms.Button btnMinimizeForm;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label InsNameLabel;
+        private System.Windows.Forms.TextBox InsNameBox;
+        private System.Windows.Forms.Label InsScoreLabel;
+        private System.Windows.Forms.Label InsDesLabel;
+        private System.Windows.Forms.TextBox InsScoreBox;
+        private System.Windows.Forms.TextBox InsDesBox;
+        private System.Windows.Forms.Button AddEntry;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox InsCatBox;
+        private System.Windows.Forms.Button AddCategory;
+        private System.Windows.Forms.ListBox listCat;
+        private System.Windows.Forms.ListBox listEntries;
+        private System.Windows.Forms.ListBox listCatEnt;
     }
 }
-
