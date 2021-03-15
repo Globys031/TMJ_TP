@@ -16,9 +16,15 @@ namespace CustomList
     {
         #region variables
         protected List<Button> Buttons;
+
+        public enum ChildFormType
+        {
+            Category,
+            Dashboard
+        };
         #endregion
 
-        #region Constructor
+        #region Form Lifecycle
 
         /// <summary>
         /// default constructor
@@ -63,7 +69,7 @@ namespace CustomList
                 Console.WriteLine(control.ToString());
                 control.Dispose();//prevent memory leak
             }
-            ChildForm childForm = new ChildForm()
+            ChildForm childForm = new ChildForm(ChildFormType.Dashboard)
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -88,7 +94,7 @@ namespace CustomList
                 control.Dispose();//prevent memory leak
             }
             PnlFormLoader.Controls.Clear();
-            ChildForm childForm = new ChildForm()
+            ChildForm childForm = new ChildForm(ChildFormType.Category)
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -113,7 +119,7 @@ namespace CustomList
                 control.Dispose();//prevent memory leak
             }
             PnlFormLoader.Controls.Clear();
-            ChildForm childForm = new ChildForm()
+            ChildForm childForm = new ChildForm(ChildFormType.Category)
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -138,7 +144,7 @@ namespace CustomList
             {
                 control.Dispose();
             }
-            ChildForm childForm = new ChildForm()
+            ChildForm childForm = new ChildForm(ChildFormType.Category)
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -163,7 +169,7 @@ namespace CustomList
                 control.Dispose();//prevent memory leak
             }
             PnlFormLoader.Controls.Clear();
-            ChildForm childForm = new ChildForm()
+            ChildForm childForm = new ChildForm(ChildFormType.Category)
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
