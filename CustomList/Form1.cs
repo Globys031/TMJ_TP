@@ -16,6 +16,10 @@ namespace CustomList
     {
         #region variables
         protected List<Button> Buttons;
+        bool mouseDown;
+        Point delta;
+        bool mouseMove;
+        bool mouseUp;
 
         public enum ChildFormType
         {
@@ -225,5 +229,44 @@ namespace CustomList
 
           );
 
+        private void btnCloseForm_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+        }
+
+        private void windowHandle_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            delta = e.Location;
+        }
+
+        private void windowHandle_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(mouseDown && e.Button == MouseButtons.Left)
+            {
+                Point dt = new Point(this.Location.X - delta.X, this.Location.Y - delta.Y);
+                Point nPos = new Point(e.X + dt.X, this.Location.Y + e.Y);
+                this.Location = nPos;
+
+            }
+        }
+
+        private void windowHandle_MouseUp(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("mouseup");
+             mouseDown = false;
+        }
+
+        private void windowHandle_MouseLeave(object sender, EventArgs e)
+        {
+            Console.WriteLine("mouseleave");
+            mouseDown = false;
+        }
+
+        private void btnMinimizeForm_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }
