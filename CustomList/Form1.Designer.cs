@@ -304,6 +304,7 @@
             this.listEntries.Name = "listEntries";
             this.listEntries.Size = new System.Drawing.Size(145, 164);
             this.listEntries.TabIndex = 13;
+           // this.listEntries.SelectedIndexChanged += new System.EventHandler(this.listEntries_SelectedIndexChanged);
             // 
             // listCatEnt
             // 

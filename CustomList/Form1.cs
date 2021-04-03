@@ -30,8 +30,8 @@ namespace CustomList
         {
             table = new Table();
             InitializeComponent();
+            connectionLine = ConnectionVal();
         }
-
         #endregion
 
 
@@ -43,36 +43,43 @@ namespace CustomList
 
         #endregion
 
-        public string ConnectionVal(string name)
+        public string ConnectionVal()
         {
-            return ConfigurationManager.ConnectionStrings["ListDatabase.Properties.Settings.ListDatabaseConnectionString"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["ListDatabase"].ConnectionString;
         }
 
         #region buttons
-        private void AddCategory_Click(object sender, EventArgs e)
+        /*private void AddCategory_Click(object sender, EventArgs e)
         {
-            string query = "INSERT INTO Category VALUES (@Category)";
+            string query = "INSERT INTO Entry VALUES (@Entry, null, 7, 'Hello', 2012-02-11)";
 
-            using (connection = new SqlConnection(ConnectionVal("Sample")))
+            using (connection = new SqlConnection(connectionLine))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 connection.Open();
-                command.Parameters.AddWithValue("@Category", InsCatBox.Text);
+                command.Parameters.AddWithValue("@Entry", InsNameBox.Text);
                 command.ExecuteScalar();
             }
+
+            //ShowCategory();
+            ShowEntries();
+
+            
         }
         private void Add_Entry_Click(object sender, EventArgs e)
         {
             string query = "INSERT INTO CategoryEntry VALUES (@CategoryId, @EntryId)";
 
-            using(connection = new SqlConnection(ConnectionVal("Sample")))
-            using(SqlCommand command = new SqlCommand(query, connection))
+            using (connection = new SqlConnection(connectionLine))
+            using (SqlCommand command = new SqlCommand(query, connection))
             {
                 connection.Open();
                 command.Parameters.AddWithValue("@CategoryId", listCat.SelectedValue);
                 command.Parameters.AddWithValue("@EntryId", listEntries.SelectedValue);
                 command.ExecuteScalar();
             }
+
+            ShowEntries();
 
         }
         private void AddEntry_Click(object sender, EventArgs e)
@@ -85,20 +92,52 @@ namespace CustomList
                   ScoreEntry.Text, 
                   descriptionEntry.Text);*/
 
-            using(connection = new SqlConnection(connectionLine))
+            /*using(connection = new SqlConnection(connectionLine))
             using(SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Category",connectionLine))
             {
               
             }
-        }
+        }*/
 
         // later here we will have buttons for removal and modification
 
         #endregion
+        /*public void SetData(string name, string image, double score, string des, string date)
+        {
+            string query = "INSERT INTO Entry VALUES (@Entry, @image, @score, @des, @date)";
 
+            using (connection = new SqlConnection(connectionLine))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@Entry", name);
+                command.Parameters.AddWithValue("@image", image);
+                command.Parameters.AddWithValue("@score", score);
+                command.Parameters.AddWithValue("@des", des);
+                command.Parameters.AddWithValue("@date", date);
+                command.ExecuteScalar();
+            }
+
+            //ShowCategory();
+            ShowEntries();
+        }
+        public List<Entry> GetDataByCategory(string CategoryName)
+        {
+            int CatId;
+            string query = "SELECT a.Id FROM Category a WHERE a.name =@catname";
+            using (connection = new SqlConnection(connectionLine))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+            {
+                command.Parameters.AddWithValue(@"catname", CategoryName);
+                CatId = Convert.ToInt32(command.ExecuteScalar());
+            }
+            return ShowCategoryEntries(CatId);
+
+        }
         private void ShowCategory()
         {
-            using(connection = new SqlConnection(ConnectionVal("Sample")))
+            using(connection = new SqlConnection(connectionLine))
             using(SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Category", connection))
             {
                 DataTable catTable = new DataTable();
@@ -111,7 +150,7 @@ namespace CustomList
         }
         private void ShowEntries()
         {
-            using (connection = new SqlConnection(ConnectionVal("Sample")))
+            using (connection = new SqlConnection(connectionLine))
             using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Entry", connection))
             {
                 DataTable entTable = new DataTable();
@@ -122,24 +161,30 @@ namespace CustomList
                 listEntries.DataSource = entTable;
             }
         }
-        private void ShowCategoryEntries()
+        private List<Entry> ShowCategoryEntries(int Id)
         {
-            string query = "SELECT a.name FROM Entry a INNER JOIN CategoryEntry b ON a.Id = b.EntryId" +
+            List<Entry> data = new List<Entry>();
+            string query = "SELECT a.name FROM Entry a INNER JOIN CategoryEntry b ON a.Id = b.EntryId " +
                 "WHERE b.CategoryId = @CategoryId";
-            using (connection = new SqlConnection(ConnectionVal("Sample")))
+            using (connection = new SqlConnection(connectionLine))
             using (SqlCommand command = new SqlCommand(query, connection))
             using (SqlDataAdapter adapter = new SqlDataAdapter(command))
             {
-                command.Parameters.AddWithValue("@CategoryId", listCat.SelectedValue);
+                command.Parameters.AddWithValue("@CategoryId", Id);
                 DataTable catEntTable = new DataTable();
                 adapter.Fill(catEntTable);
 
-                listCatEnt.DisplayMember = "name";
+                /*listCatEnt.DisplayMember = "name";
                 listCatEnt.ValueMember = "Id";
                 listCatEnt.DataSource = catEntTable;
-                
+                foreach(DataRow dr in catEntTable.Rows)
+                {
+                    Entry entry = new Entry(dr.ToString());
+                    data.Add(entry);
+                }
             }
-        }
+            return data;
+        }*/
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
          (
@@ -155,8 +200,11 @@ namespace CustomList
         private void Form1_Load(object sender, EventArgs e)
         {
             Region = new Region(new Rectangle(0, 0, Width, Height));
-            ShowCategory();
+            /*ShowCategory();
             ShowEntries();
+            ShowCategory();*/
+            //ShowCategory();
+            //ShowCategoryEntries();
         }
 
         private void b_Dashboard_Click(object sender, EventArgs e)
@@ -229,5 +277,9 @@ namespace CustomList
             b_custom.BackColor = Color.FromArgb(23, 30, 54);
         }
 
+        /*private void listEntries_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowCategoryEntries();
+        }*/
     }
 }
