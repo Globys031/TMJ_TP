@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CustomList
 {
     // the actual class holding the data on entries
-    class Entry
+    public class Entry
     {
         private string name; // name of the entry (e.g. "The mummy 1999")
         // placeholder for image

@@ -62,12 +62,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="ChildForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ChildForm.Designer.cs">
       <DependentUpon>ChildForm.cs</DependentUpon>
     </Compile>
+=======
+    <Compile Include="DatabaseClass.cs" />
+>>>>>>> d5fd9b7 (Added basic SQL methods)
     <Compile Include="Entry.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
