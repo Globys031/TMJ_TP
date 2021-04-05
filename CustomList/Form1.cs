@@ -107,21 +107,12 @@ namespace CustomList
                   ScoreEntry.Text, 
                   descriptionEntry.Text);*/
 
-<<<<<<< HEAD
-        /*using(connection = new SqlConnection(connectionLine))
-        using(SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Category",connectionLine))
-        {
-
-        }
-    }*/
-=======
             /*using(connection = new SqlConnection(connectionLine))
             using(SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Category",connectionLine))
             {
               
             }
         }*/
->>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
 
         // later here we will have buttons for removal and modification
 

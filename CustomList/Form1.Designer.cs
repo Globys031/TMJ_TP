@@ -258,7 +258,7 @@
             this.AddEntry.TabIndex = 8;
             this.AddEntry.Text = "Insert data";
             this.AddEntry.UseVisualStyleBackColor = true;
-            this.AddEntry.Click += new System.EventHandler(this.Add_Entry_Click);
+            //this.AddEntry.Click += new System.EventHandler(this.Add_Entry_Click);
             // 
             // label2
             // 
@@ -285,7 +285,7 @@
             this.AddCategory.TabIndex = 11;
             this.AddCategory.Text = "Add category";
             this.AddCategory.UseVisualStyleBackColor = true;
-            this.AddCategory.Click += new System.EventHandler(this.AddCategory_Click);
+            //this.AddCategory.Click += new System.EventHandler(this.AddCategory_Click);
             // 
             // listCat
             // 
@@ -304,11 +304,7 @@
             this.listEntries.Name = "listEntries";
             this.listEntries.Size = new System.Drawing.Size(145, 164);
             this.listEntries.TabIndex = 13;
-<<<<<<< HEAD
-            // this.listEntries.SelectedIndexChanged += new System.EventHandler(this.listEntries_SelectedIndexChanged);
-=======
            // this.listEntries.SelectedIndexChanged += new System.EventHandler(this.listEntries_SelectedIndexChanged);
->>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
             // 
             // listCatEnt
             // 
