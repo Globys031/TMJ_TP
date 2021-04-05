@@ -2,6 +2,7 @@
 # Prerequisites
 *.d
 *.vs
+*.suo
 
 # Compiled Object files
 *.slo
@@ -37,6 +38,8 @@
 *.suo
 *.user
 *.sln.docstates
+*.vs
+*.suo
 
 # Build results
 [Dd]ebug/
@@ -60,6 +63,8 @@ x64/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
+*.vs
+*.suo
 *_i.c
 *_p.c
 *.ilk
