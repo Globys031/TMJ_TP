@@ -49,7 +49,7 @@ namespace CustomList
         }
 
         #region buttons
-        private void AddCategory_Click(object sender, EventArgs e)
+        /*private void AddCategory_Click(object sender, EventArgs e)
         {
             string query = "INSERT INTO Entry VALUES (@Entry, null, 7, 'Hello', 2012-02-11)";
             using (connection = new SqlConnection(connectionLine))
@@ -81,22 +81,22 @@ namespace CustomList
             // missing an entry for images as well
             // table.Category(0) is a place holder. Instead of a 0 it will later
             // be the index of the actual category we want to query
-              InOutUtils.InsertBasicEntry(table.GetCategory(0),
+            /*  InOutUtils.InsertBasicEntry(table.GetCategory(0),
                   EntryNameInput.Text, 
                   ScoreEntry.Text, 
-                  descriptionEntry.Text);
+                  descriptionEntry.Text);*/
 
-        using(connection = new SqlConnection(connectionLine))
+        /*using(connection = new SqlConnection(connectionLine))
         using(SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Category",connectionLine))
         {
 
         }
-    }
+    }*/
 
         // later here we will have buttons for removal and modification
 
         #endregion
-        public void SetData(string name, string image, double score, string des, string date)
+        /*public void SetData(string name, string image, double score, string des, string date)
         {
             string query = "INSERT INTO Entry VALUES (@Entry, @image, @score, @des, @date)";
             using (connection = new SqlConnection(connectionLine))
@@ -162,7 +162,7 @@ namespace CustomList
                 command.Parameters.AddWithValue("@CategoryId", Id);
                 DataTable catEntTable = new DataTable();
                 adapter.Fill(catEntTable);
-                listCatEnt.DisplayMember = "name";
+                /*listCatEnt.DisplayMember = "name";
                 listCatEnt.ValueMember = "Id";
                 listCatEnt.DataSource = catEntTable;
                 foreach(DataRow dr in catEntTable.Rows)
@@ -172,7 +172,7 @@ namespace CustomList
                 }
             }
             return data;
-        }
+        }*/
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
          (
@@ -188,9 +188,9 @@ namespace CustomList
         private void Form1_Load(object sender, EventArgs e)
         {
             Region = new Region(new Rectangle(0, 0, Width, Height));
-            ShowCategory();
+            /*ShowCategory();
             ShowEntries();
-            ShowCategory();
+            ShowCategory();*/
             //ShowCategory();
             //ShowCategoryEntries();
         }
@@ -265,9 +265,9 @@ namespace CustomList
             b_custom.BackColor = Color.FromArgb(23, 30, 54);
         }
 
-        private void listEntries_SelectedIndexChanged(object sender, EventArgs e)
+        /*private void listEntries_SelectedIndexChanged(object sender, EventArgs e)
         {
             ShowCategoryEntries();
-        }
+        }*/
     }
 }
