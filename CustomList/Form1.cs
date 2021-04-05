@@ -52,6 +52,10 @@ namespace CustomList
         /*private void AddCategory_Click(object sender, EventArgs e)
         {
             string query = "INSERT INTO Entry VALUES (@Entry, null, 7, 'Hello', 2012-02-11)";
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
             using (connection = new SqlConnection(connectionLine))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -59,13 +63,24 @@ namespace CustomList
                 command.Parameters.AddWithValue("@Entry", InsNameBox.Text);
                 command.ExecuteScalar();
             }
+<<<<<<< HEAD
             //ShowCategory();
             ShowEntries();
+=======
+
+            //ShowCategory();
+            ShowEntries();
+
+>>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
             
         }
         private void Add_Entry_Click(object sender, EventArgs e)
         {
             string query = "INSERT INTO CategoryEntry VALUES (@CategoryId, @EntryId)";
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
             using (connection = new SqlConnection(connectionLine))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -74,7 +89,13 @@ namespace CustomList
                 command.Parameters.AddWithValue("@EntryId", listEntries.SelectedValue);
                 command.ExecuteScalar();
             }
+<<<<<<< HEAD
             ShowEntries();
+=======
+
+            ShowEntries();
+
+>>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
         }
         private void AddEntry_Click(object sender, EventArgs e)
         {
@@ -86,12 +107,21 @@ namespace CustomList
                   ScoreEntry.Text, 
                   descriptionEntry.Text);*/
 
+<<<<<<< HEAD
         /*using(connection = new SqlConnection(connectionLine))
         using(SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Category",connectionLine))
         {
 
         }
     }*/
+=======
+            /*using(connection = new SqlConnection(connectionLine))
+            using(SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Category",connectionLine))
+            {
+              
+            }
+        }*/
+>>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
 
         // later here we will have buttons for removal and modification
 
@@ -99,6 +129,10 @@ namespace CustomList
         /*public void SetData(string name, string image, double score, string des, string date)
         {
             string query = "INSERT INTO Entry VALUES (@Entry, @image, @score, @des, @date)";
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
             using (connection = new SqlConnection(connectionLine))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -110,6 +144,10 @@ namespace CustomList
                 command.Parameters.AddWithValue("@date", date);
                 command.ExecuteScalar();
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
             //ShowCategory();
             ShowEntries();
         }
@@ -125,6 +163,10 @@ namespace CustomList
                 CatId = Convert.ToInt32(command.ExecuteScalar());
             }
             return ShowCategoryEntries(CatId);
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
         }
         private void ShowCategory()
         {
@@ -133,6 +175,10 @@ namespace CustomList
             {
                 DataTable catTable = new DataTable();
                 adapter.Fill(catTable);
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
                 listCat.DisplayMember = "name";
                 listCat.ValueMember = "Id";
                 listCat.DataSource = catTable;
@@ -145,6 +191,10 @@ namespace CustomList
             {
                 DataTable entTable = new DataTable();
                 adapter.Fill(entTable);
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
                 listEntries.DisplayMember = "name";
                 listEntries.ValueMember = "Id";
                 listEntries.DataSource = entTable;
@@ -162,6 +212,10 @@ namespace CustomList
                 command.Parameters.AddWithValue("@CategoryId", Id);
                 DataTable catEntTable = new DataTable();
                 adapter.Fill(catEntTable);
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5fd9b717afdbfebdb48ea738a2caa3145498eb8
                 /*listCatEnt.DisplayMember = "name";
                 listCatEnt.ValueMember = "Id";
                 listCatEnt.DataSource = catEntTable;
