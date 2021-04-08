@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
+using System.Data.SqlClient;
+//using System.Data;
 
 namespace CustomList
 {
@@ -36,6 +38,8 @@ namespace CustomList
         public Form1()
         {
             InitializeComponent();
+           
+            DatabaseClass.GetDataByCategory("Movies");
         }
 
         private void Form1_Load(object sender, EventArgs e)
