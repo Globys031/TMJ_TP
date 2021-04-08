@@ -13,6 +13,7 @@ namespace CustomList
     {
         public static string ConnectionVal()
         {
+            
             return ConfigurationManager.ConnectionStrings["ListDatabase"].ConnectionString;
         }
         public static string connectionLine = ConnectionVal();
@@ -44,10 +45,11 @@ namespace CustomList
         {
             int CatId;
             string query = "SELECT a.Id FROM Category a WHERE a.name =@catname";
-            using (connection = new SqlConnection(connectionLine))
+            using (connection = new SqlConnection(ConnectionVal()))
             using (SqlCommand command = new SqlCommand(query, connection))
             using (SqlDataAdapter adapter = new SqlDataAdapter(command))
             {
+                connection.Open();
                 command.Parameters.AddWithValue(@"catname", CategoryName);
                 CatId = Convert.ToInt32(command.ExecuteScalar());
             }
@@ -57,12 +59,13 @@ namespace CustomList
         private static List<Entry> ShowCategoryEntries(int Id)
         {
             List<Entry> data = new List<Entry>();
-            string query = "SELECT a.name FROM Entry a INNER JOIN CategoryEntry b ON a.Id = b.EntryId " +
+            string query = "SELECT * FROM Entry a INNER JOIN CategoryEntry b ON a.Id = b.EntryId " +
                 "WHERE b.CategoryId = @CategoryId";
             using (connection = new SqlConnection(connectionLine))
             using (SqlCommand command = new SqlCommand(query, connection))
             using (SqlDataAdapter adapter = new SqlDataAdapter(command))
             {
+                connection.Open();
                 command.Parameters.AddWithValue("@CategoryId", Id);
                 DataTable catEntTable = new DataTable();
                 adapter.Fill(catEntTable);
@@ -72,7 +75,14 @@ namespace CustomList
                 listCatEnt.DataSource = catEntTable;*/
                 foreach (DataRow dr in catEntTable.Rows)
                 {
-                    Entry entry = new Entry(dr.ToString());
+
+                    //Entry entry = new Entry(dr.ItemArray[0].ToString());
+                    string name = dr[1].ToString();
+                    string image = dr[2].ToString();
+                    double score = double.Parse(dr[3].ToString());
+                    string des = dr[4].ToString();
+                    string date = dr[5].ToString();
+                    Entry entry = new Entry(name, image, score, des, date);
                     data.Add(entry);
                 }
             }
