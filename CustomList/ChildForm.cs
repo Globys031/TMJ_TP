@@ -14,6 +14,7 @@ namespace CustomList
     public partial class ChildForm : Form
     {
         ChildFormType type;
+        List<EntryComponent> entryComponents;
 
         public ChildForm(ChildFormType type)
         {
@@ -23,6 +24,7 @@ namespace CustomList
 
         private void ChildForm_Load(object sender, EventArgs e)
         {
+
         }
 
         private void ChildForm_Activated(object sender, EventArgs e)
@@ -35,9 +37,16 @@ namespace CustomList
             switch (type)
             {//should probably add some settings that could probably stored in a settings.json
                 case ChildFormType.Category:
-                   /* Panel panel = new Panel() { Dock = DockStyle.Left, Size = dataPanel.Size,
-                        BorderStyle = dataPanel.BorderStyle, Padding = dataPanel.Padding};
-                    Controls.Add(panel);*/
+                    entryComponents = new List<EntryComponent>();
+
+                    //var list = DatabaseClass.GetDataByCategory("Movies");
+
+                    EntryComponent entry = new EntryComponent(0, new Entry("fuck"));
+                    Controls.Add(entry.mainPanel);
+                    EntryComponent entry2 = new EntryComponent(0, new Entry("fuck č"));
+                    Controls.Add(entry2.mainPanel);
+                    entryComponents.Add(entry);
+                    entryComponents.Add(entry2);
                     break;
                 case ChildFormType.Dashboard:
                     Label label = new Label() { Text = "Cool statistic here", Dock = DockStyle.Left };
@@ -49,6 +58,40 @@ namespace CustomList
         private void lblWatchCount_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAddEntry_MouseEnter(object sender, EventArgs e)
+        {
+            btnAddEntry.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void btnAddEntry_MouseLeave(object sender, EventArgs e)
+        {
+            btnAddEntry.BorderStyle = BorderStyle.None;
+        }
+
+        private void btnAddEntry_Click(object sender, EventArgs e)
+        {
+            //button to add entry has been clicked
+            //make a class for entry
+            EntryComponent entry = new EntryComponent(0, new Entry("fuck"));
+            Controls.Add(entry.mainPanel);
+        }
+
+        private void ChildForm_Leave(object sender, EventArgs e)
+        {
+            // this.
+            //still some memory leaks left
+            if (type == ChildFormType.Category)
+            {
+                foreach (EntryComponent entry in entryComponents)
+                {
+                    entry.DestroyComponent();
+                }
+                btnAddEntry.Image.Dispose();
+                this.Dispose(true);
+                this.Close();
+            }
         }
     }
 }
