@@ -93,7 +93,7 @@ namespace CustomList
             if (CatId != 0)
                 return ShowCategoryEntries(CatId, sortQuery);
             else return null;
-
+          
         }
         private static List<Entry> ShowCategoryEntries(int Id, string sortquery)
         {
