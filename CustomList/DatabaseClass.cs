@@ -52,6 +52,7 @@ namespace CustomList
                 if (command != null)
                     CatId = Convert.ToInt32(command.ExecuteScalar());
             }
+
             return CatId;
         }
         private static void ConnectEntryAndCategory(string Category, int entryId)
@@ -153,6 +154,46 @@ namespace CustomList
                 query = " ORDER BY " + entryIndex + ";";
             else query = " ORDER BY " + entryIndex + " DESC;";
             return GetDataByCategory(Category, query);
+        }
+
+        /// <summary>
+        /// Returns every entry that has the speicfied string in its name.
+        /// If name = "abc" then it'll return antries with the name of
+        /// "abc", "abcdef", "defabcfg" and so on
+        /// </summary>
+        /// <param name="Id">Category ID</param>
+        /// <param name="name">The name of the entry to find</param>
+        /// <returns></returns>
+        private static List<Entry> GetCategoryEntry(int Id, string entryName)
+        {
+            string query = @"SELECT Entry.* FROM Entry,
+                             INNER JOIN CategoryEntry,
+                             ON Entry.Id = CategoryEntry.Id,
+                             WHERE Entry.name,
+                             LIKE '%@entryName%'
+                             AND CategoryEntry.CategoryId = @categoryId";
+            List<Entry> data = new List<Entry>();
+            using (connection = new SqlConnection(connectionLine))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@entryName", entryName);
+                command.Parameters.AddWithValue("@categoryId", Id);
+                DataTable catEntTable = new DataTable();
+                adapter.Fill(catEntTable);
+                foreach (DataRow dr in catEntTable.Rows)
+                {
+                    string name = dr[1].ToString();
+                    string image = dr[2].ToString();
+                    double score = double.Parse(dr[3].ToString());
+                    string des = dr[4].ToString();
+                    string date = dr[5].ToString();
+                    Entry entry = new Entry(name, image, score, des, date);
+                    data.Add(entry);
+                }
+            }
+            return data;
         }
     }
 }

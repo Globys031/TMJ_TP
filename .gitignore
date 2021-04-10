@@ -249,4 +249,4 @@ project.lock.json
 #####
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
->>>>>>> 253c698 (Modified .gitignore)
+CustomList/bin/.*
