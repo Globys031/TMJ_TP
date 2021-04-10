@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace CustomList
 {
-    class EntryComponent
+    public class EntryComponent
     {
         public Panel mainPanel;
 
@@ -29,7 +29,7 @@ namespace CustomList
         private PictureBox picStar;
         private Label lblRating;
 
-        public EntryComponent(UInt32 index, Entry entry)
+        public EntryComponent(int index, Entry entry)
         {
             this.resources = new ComponentResourceManager();
             //initialize components
@@ -121,8 +121,8 @@ namespace CustomList
             //entry name
             lblEntryName.AutoSize = true;
             lblEntryName.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            lblEntryName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            lblEntryName.Location = new System.Drawing.Point(55, 2);
+            lblEntryName.ForeColor = System.Drawing.Color.FromArgb(0, 126, 249);
+            lblEntryName.Location = new System.Drawing.Point(0, 2);
             lblEntryName.Name = "lblEntryName" + index;
             lblEntryName.Size = new System.Drawing.Size(69, 23);
             lblEntryName.Text = entry.name;

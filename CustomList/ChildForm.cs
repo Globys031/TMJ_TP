@@ -39,11 +39,12 @@ namespace CustomList
             switch (type)
             {//should probably add some settings that could probably stored in a settings.json
                 case ChildFormType.Category:
+                    //will display all entries of this category
                     entryComponents = new List<EntryComponent>();
 
-                    var entries = DatabaseClass.GetDataByCategory(category);
+                    var entries = DatabaseClass.GetDataByCategory(category, "");
 
-                    UInt32 i = 0;
+                    int i = 0;
                     foreach(Entry ent in entries)
                     {
                         EntryComponent entr = new EntryComponent(i, ent);
@@ -75,12 +76,8 @@ namespace CustomList
 
         private void btnAddEntry_Click(object sender, EventArgs e)
         {
-            //button to add entry has been clicked
-            //make a class for entry
-            DatabaseClass.SetData(category, "lala", "lala", 6.6, "dsds", "2019-10-13");
-
-            EntryComponent entry = new EntryComponent(0, new Entry("empty"));
-            Controls.Add(entry.mainPanel);
+            Form2 dialogue = new Form2(entryComponents, category);
+            dialogue.Show();
         }
 
         private void ChildForm_Leave(object sender, EventArgs e)
