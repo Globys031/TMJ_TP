@@ -38,8 +38,6 @@ namespace CustomList
         public Form1()
         {
             InitializeComponent();
-           
-            DatabaseClass.GetDataByCategory("Movies");
         }
 
         private void Form1_Load(object sender, EventArgs e)
