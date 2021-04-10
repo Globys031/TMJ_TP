@@ -15,11 +15,13 @@ namespace CustomList
     {
         ChildFormType type;
         List<EntryComponent> entryComponents;
+        string category;
 
-        public ChildForm(ChildFormType type)
+        public ChildForm(ChildFormType type, string category = null)
         {
             InitializeComponent();
             this.type = type;
+            this.category = category;
         }
 
         private void ChildForm_Load(object sender, EventArgs e)
@@ -39,14 +41,15 @@ namespace CustomList
                 case ChildFormType.Category:
                     entryComponents = new List<EntryComponent>();
 
-                    //var list = DatabaseClass.GetDataByCategory("Movies");
+                    var entries = DatabaseClass.GetDataByCategory(category);
 
-                    EntryComponent entry = new EntryComponent(0, new Entry("fuck"));
-                    Controls.Add(entry.mainPanel);
-                    EntryComponent entry2 = new EntryComponent(0, new Entry("fuck č"));
-                    Controls.Add(entry2.mainPanel);
-                    entryComponents.Add(entry);
-                    entryComponents.Add(entry2);
+                    UInt32 i = 0;
+                    foreach(Entry ent in entries)
+                    {
+                        EntryComponent entr = new EntryComponent(i, ent);
+                        Controls.Add(entr.mainPanel);
+                        entryComponents.Add(entr);
+                    }
                     break;
                 case ChildFormType.Dashboard:
                     Label label = new Label() { Text = "Cool statistic here", Dock = DockStyle.Left };
@@ -74,7 +77,9 @@ namespace CustomList
         {
             //button to add entry has been clicked
             //make a class for entry
-            EntryComponent entry = new EntryComponent(0, new Entry("fuck"));
+            DatabaseClass.SetData(category, "lala", "lala", 6.6, "dsds", "2019-10-13");
+
+            EntryComponent entry = new EntryComponent(0, new Entry("empty"));
             Controls.Add(entry.mainPanel);
         }
 

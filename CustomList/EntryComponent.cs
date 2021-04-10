@@ -119,14 +119,14 @@ namespace CustomList
             btnDots.TabStop = false;
 
             //entry name
-            this.lblEntryName.AutoSize = true;
-            this.lblEntryName.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEntryName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.lblEntryName.Location = new System.Drawing.Point(55, 2);
-            this.lblEntryName.Name = "lblEntryName" + index;
-            this.lblEntryName.Size = new System.Drawing.Size(69, 23);
-            this.lblEntryName.Text = entry.name;
-            this.lblEntryName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblEntryName.AutoSize = true;
+            lblEntryName.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblEntryName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            lblEntryName.Location = new System.Drawing.Point(55, 2);
+            lblEntryName.Name = "lblEntryName" + index;
+            lblEntryName.Size = new System.Drawing.Size(69, 23);
+            lblEntryName.Text = entry.name;
+            lblEntryName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
             watchCountPanel.Controls.Add(lblWatchCount);
             watchCountPanel.Dock = System.Windows.Forms.DockStyle.Left;
@@ -159,11 +159,11 @@ namespace CustomList
             // lblRating
             // 
             lblRating.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            lblRating.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            lblRating.ForeColor = System.Drawing.Color.FromArgb(0, 126, 249);
             lblRating.Location = new System.Drawing.Point(35, 9);
             lblRating.Name = "lblRating" + index;
             lblRating.Size = new System.Drawing.Size(35, 36);
-            lblRating.Text = "6.7";
+            lblRating.Text = entry.score.ToString();
         }
 
         public void DestroyComponent()

@@ -77,7 +77,7 @@ namespace CustomList
                 Console.WriteLine(control.ToString());
                 control.Dispose();//prevent memory leak
             }
-            ChildForm childForm = new ChildForm(ChildFormType.Dashboard)
+            ChildForm childForm = new ChildForm(ChildFormType.Dashboard, "")
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -102,7 +102,7 @@ namespace CustomList
                 control.Dispose();//prevent memory leak
             }
             PnlFormLoader.Controls.Clear();
-            ChildForm childForm = new ChildForm(ChildFormType.Category)
+            ChildForm childForm = new ChildForm(ChildFormType.Category, "Movies")
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -127,7 +127,7 @@ namespace CustomList
                 control.Dispose();//prevent memory leak
             }
             PnlFormLoader.Controls.Clear();
-            ChildForm childForm = new ChildForm(ChildFormType.Category)
+            ChildForm childForm = new ChildForm(ChildFormType.Category, "TV_Series")
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -152,7 +152,7 @@ namespace CustomList
             {
                 control.Dispose();
             }
-            ChildForm childForm = new ChildForm(ChildFormType.Category)
+            ChildForm childForm = new ChildForm(ChildFormType.Category, "Anime")
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
