@@ -44,16 +44,13 @@ namespace CustomList
         {
             int CatId = 0;
             string query = "SELECT a.Id FROM Category a WHERE a.name =@catname";
-            try
+            using (connection = new SqlConnection(connectionLine))
+            using (SqlCommand command = new SqlCommand(query, connection))
             {
-                using (connection = new SqlConnection(connectionLine))
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    connection.Open();
-                    command.Parameters.AddWithValue(@"catname", Category);
-                    if (command != null)
-                        CatId = Convert.ToInt32(command.ExecuteScalar());
-                }
+                connection.Open();
+                command.Parameters.AddWithValue(@"catname", Category);
+                if (command != null)
+                    CatId = Convert.ToInt32(command.ExecuteScalar());
             }
 
             return CatId;
