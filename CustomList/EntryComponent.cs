@@ -15,6 +15,9 @@ namespace CustomList
 
         private ComponentResourceManager resources;
 
+        private Entry entry;
+        private string category;
+
         private Panel childPanel;
         private PictureBox btnIncrementWatch; 
         private Panel moreEntryInfoPanel;
@@ -28,9 +31,13 @@ namespace CustomList
         private Panel ratingPanel;
         private PictureBox picStar;
         private Label lblRating;
+        //private 
 
-        public EntryComponent(int index, Entry entry)
+        public EntryComponent(int index, Entry entry, string category)
         {
+            this.entry = entry;
+            this.category = category;
+
             this.resources = new ComponentResourceManager();
             //initialize components
             mainPanel = new Panel();
@@ -117,6 +124,9 @@ namespace CustomList
             btnDots.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             btnDots.TabIndex = 0;
             btnDots.TabStop = false;
+            btnDots.MouseEnter += new System.EventHandler(btnDotsHover);
+            btnDots.MouseLeave += new System.EventHandler(btnDotsHoverLeave);
+            btnDots.MouseClick += new System.Windows.Forms.MouseEventHandler(btnDotsClicked);
 
             //entry name
             lblEntryName.AutoSize = true;
@@ -164,6 +174,35 @@ namespace CustomList
             lblRating.Name = "lblRating" + index;
             lblRating.Size = new System.Drawing.Size(35, 36);
             lblRating.Text = entry.score.ToString();
+        }
+
+        public void btnDotsHover(object sender, EventArgs e)
+        {
+            btnDots.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        public void btnDotsHoverLeave(object sender, EventArgs e)
+        {
+            btnDots.BorderStyle = BorderStyle.None;
+        }
+
+        public void btnDotsClicked(object sender, EventArgs e)
+        {
+            MoreInfoForm moreInfoForm = new MoreInfoForm(entry, category);
+            moreInfoForm.Show();
+            //this is very not good practise, but time is money :D
+            this.mainPanel.Parent.Parent.Parent.Enabled = false;
+            moreInfoForm.FormClosed += MoreInfoForm_FormClosed;
+        }
+
+        private void MoreInfoForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.mainPanel.Parent.Parent.Parent.Enabled = true;
+            var parent = mainPanel.Parent as ChildForm;
+            //another error prone way to refresh the form, but oh well
+            parent.Controls.Clear();
+            parent.ChildForm_Load("", new EventArgs());
+            parent.ChildForm_Shown("", new EventArgs());
         }
 
         public void DestroyComponent()

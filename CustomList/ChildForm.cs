@@ -24,9 +24,9 @@ namespace CustomList
             this.category = category;
         }
 
-        private void ChildForm_Load(object sender, EventArgs e)
+        public void ChildForm_Load(object sender, EventArgs e)
         {
-
+            //InitializeComponent();
         }
 
         private void ChildForm_Activated(object sender, EventArgs e)
@@ -34,8 +34,11 @@ namespace CustomList
             
         }
 
-        private void ChildForm_Shown(object sender, EventArgs e)
+        public void ChildForm_Shown(object sender, EventArgs e)
         {
+            if (Controls.Count == 0)//when this is called if an entry is deleted the controls should be empty
+                InitializeComponent();//need to init because it also has that big plus button
+            //otherwise it wont load, only the entries
             switch (type)
             {//should probably add some settings that could probably stored in a settings.json
                 case ChildFormType.Category:
@@ -47,7 +50,7 @@ namespace CustomList
                     int i = 0;
                     foreach(Entry ent in entries)
                     {
-                        EntryComponent entr = new EntryComponent(i, ent);
+                        EntryComponent entr = new EntryComponent(i, ent, category);
                         Controls.Add(entr.mainPanel);
                         entryComponents.Add(entr);
                     }
