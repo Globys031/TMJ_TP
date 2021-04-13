@@ -14,12 +14,13 @@ namespace CustomList
     {
         private List<EntryComponent> entryComponents;
         private string category;
-      //  private ChildForm childForm;
-        public Form2(List<EntryComponent> entryComponents, string category)
+        private ChildForm parent;
+        public Form2(List<EntryComponent> entryComponents, string category, ChildForm parent)
         {
             InitializeComponent();
             this.entryComponents = entryComponents;
            this.category = category;
+            this.parent = parent;
         }
 
         private void btnExitAddDialogue_Click(object sender, EventArgs e)
@@ -39,7 +40,8 @@ namespace CustomList
             entryComponents.Add(new EntryComponent(entryComponents.Count + 1, ent));
 
             DatabaseClass.SetData(category, name, "", Double.Parse(rating), description, dateTime);
-            //childForm.Controls.Add()
+            parent.Controls.Add(entryComponents[entryComponents.Count - 1].mainPanel);
+
             this.Close();
             this.Dispose();
         }

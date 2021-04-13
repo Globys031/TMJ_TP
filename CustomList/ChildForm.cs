@@ -31,7 +31,7 @@ namespace CustomList
 
         private void ChildForm_Activated(object sender, EventArgs e)
         {
-
+            
         }
 
         private void ChildForm_Shown(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace CustomList
 
         private void btnAddEntry_Click(object sender, EventArgs e)
         {
-            Form2 dialogue = new Form2(entryComponents, category);
+            Form2 dialogue = new Form2(entryComponents, category, this);
             dialogue.Show();
         }
 
