@@ -14,6 +14,7 @@ namespace CustomList
     {
         private Entry entry;
         private string category;
+        private bool delete;
         public MoreInfoForm(Entry entry, string category)
         {
             InitializeComponent();
@@ -23,8 +24,16 @@ namespace CustomList
 
         private void btnDeleteEntry_Click(object sender, EventArgs e)
         {
-            DatabaseClass.RemoveEntry(category, entry.name);
-            this.Close();
+            if (delete)
+            {
+                DatabaseClass.RemoveEntry(category, entry.name);
+                this.Close();
+            }
+            else
+            {
+                lblAnyText.Text = "Are you sure you want to delete this entry? It will be lost forever. To confirm click that button again.";
+                delete = true;
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
