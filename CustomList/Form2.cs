@@ -37,7 +37,7 @@ namespace CustomList
             string dateTime = dateRelease.Value.Date.ToShortDateString();
 
             var ent = new Entry(name, "", Double.Parse(rating), description, dateTime);
-            entryComponents.Add(new EntryComponent(entryComponents.Count + 1, ent));
+            entryComponents.Add(new EntryComponent(entryComponents.Count + 1, ent, category));
 
             DatabaseClass.SetData(category, name, "", Double.Parse(rating), description, dateTime);
             parent.Controls.Add(entryComponents[entryComponents.Count - 1].mainPanel);
