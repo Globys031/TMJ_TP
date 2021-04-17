@@ -40,8 +40,8 @@
             this.pfpic = new System.Windows.Forms.PictureBox();
             this.PnlFormLoader = new System.Windows.Forms.Panel();
             this.windowHandle = new System.Windows.Forms.Panel();
-            this.btnCloseForm = new System.Windows.Forms.Button();
             this.btnMinimizeForm = new System.Windows.Forms.Button();
+            this.btnCloseForm = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pfpic)).BeginInit();
@@ -183,9 +183,9 @@
             // 
             // PnlFormLoader
             // 
-            this.PnlFormLoader.Location = new System.Drawing.Point(0, 142);
+            this.PnlFormLoader.Location = new System.Drawing.Point(0, 135);
             this.PnlFormLoader.Name = "PnlFormLoader";
-            this.PnlFormLoader.Size = new System.Drawing.Size(951, 479);
+            this.PnlFormLoader.Size = new System.Drawing.Size(951, 492);
             this.PnlFormLoader.TabIndex = 1;
             // 
             // windowHandle
@@ -203,20 +203,6 @@
             this.windowHandle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.windowHandle_MouseMove);
             this.windowHandle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.windowHandle_MouseUp);
             // 
-            // btnCloseForm
-            // 
-            this.btnCloseForm.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCloseForm.FlatAppearance.BorderSize = 0;
-            this.btnCloseForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCloseForm.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseForm.Image")));
-            this.btnCloseForm.Location = new System.Drawing.Point(900, 0);
-            this.btnCloseForm.Name = "btnCloseForm";
-            this.btnCloseForm.Size = new System.Drawing.Size(51, 39);
-            this.btnCloseForm.TabIndex = 0;
-            this.btnCloseForm.Text = "\r\n";
-            this.btnCloseForm.UseVisualStyleBackColor = true;
-            this.btnCloseForm.Click += new System.EventHandler(this.btnCloseForm_Click);
-            // 
             // btnMinimizeForm
             // 
             this.btnMinimizeForm.Dock = System.Windows.Forms.DockStyle.Right;
@@ -232,15 +218,29 @@
             this.btnMinimizeForm.UseVisualStyleBackColor = true;
             this.btnMinimizeForm.Click += new System.EventHandler(this.btnMinimizeForm_Click);
             // 
+            // btnCloseForm
+            // 
+            this.btnCloseForm.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCloseForm.FlatAppearance.BorderSize = 0;
+            this.btnCloseForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCloseForm.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseForm.Image")));
+            this.btnCloseForm.Location = new System.Drawing.Point(900, 0);
+            this.btnCloseForm.Name = "btnCloseForm";
+            this.btnCloseForm.Size = new System.Drawing.Size(51, 39);
+            this.btnCloseForm.TabIndex = 0;
+            this.btnCloseForm.Text = "\r\n";
+            this.btnCloseForm.UseVisualStyleBackColor = true;
+            this.btnCloseForm.Click += new System.EventHandler(this.btnCloseForm_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(951, 615);
+            this.ClientSize = new System.Drawing.Size(951, 630);
+            this.Controls.Add(this.PnlFormLoader);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.windowHandle);
-            this.Controls.Add(this.PnlFormLoader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";

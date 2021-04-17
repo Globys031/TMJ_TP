@@ -51,7 +51,7 @@ namespace CustomList
                     foreach(Entry ent in entries)
                     {
                         EntryComponent entr = new EntryComponent(i, ent, category);
-                        Controls.Add(entr.mainPanel);
+                        DataPanel.Controls.Add(entr.mainPanel);
                         entryComponents.Add(entr);
                     }
                     break;
@@ -85,8 +85,6 @@ namespace CustomList
 
         private void ChildForm_Leave(object sender, EventArgs e)
         {
-            // this.
-            //still some memory leaks left
             if (type == ChildFormType.Category)
             {
                 foreach (EntryComponent entry in entryComponents)
@@ -94,8 +92,43 @@ namespace CustomList
                     entry.DestroyComponent();
                 }
                 btnAddEntry.Image.Dispose();
+                btnSearch.BackgroundImage.Dispose();
                 this.Dispose(true);
                 this.Close();
+            }
+        }
+
+        private void btnSortScore_Click(object sender, EventArgs e)
+        {
+            DataPanel.Controls.Clear();
+            InitAddButton(DataPanel);
+            entryComponents.Clear();
+
+            var list = DatabaseClass.SortEntries(category, 4, true);//sort by score descending
+
+            int i = 0;
+            foreach (Entry ent in list)
+            {
+                EntryComponent entr = new EntryComponent(i, ent, category);
+                DataPanel.Controls.Add(entr.mainPanel);
+                entryComponents.Add(entr);
+            }
+        }
+
+        private void btnSortName_Click(object sender, EventArgs e)
+        {
+            DataPanel.Controls.Clear();
+            InitAddButton(DataPanel);
+            entryComponents.Clear();
+
+            var list = DatabaseClass.SortEntries(category, 2, false);//sort by name descending
+
+            int i = 0;
+            foreach (Entry ent in list)
+            {
+                EntryComponent entr = new EntryComponent(i, ent, category);
+                DataPanel.Controls.Add(entr.mainPanel);
+                entryComponents.Add(entr);
             }
         }
     }
