@@ -22,10 +22,13 @@ namespace CustomList
         #region buttons
 
         #endregion
-        public static void SetData(string Category, string name, string image, double score, string des, string date)
+        public static void SetData(string Category, string name, string image, int score, string des, string date)
         {
-            string query = "INSERT INTO Entry (name, image, score, description, date_of_entry)" +
-                " VALUES (@name, NULL, @score, @description, @date_of_entry); SELECT SCOPE_IDENTITY()";
+            int CatId = FindCategoryId(Category);
+            string query = "IF NOT EXISTS (SELECT * FROM Entry a INNER JOIN CategoryEntry b ON a.Id = b.EntryId " +
+                "WHERE b.CategoryId = " + CatId + " AND a.name = @name) BEGIN" +
+                " INSERT INTO Entry (name, image, score, description, date_of_entry)" +
+                " VALUES (@name, NULL, @score, @description, @date_of_entry); SELECT SCOPE_IDENTITY() END";
             int newID;
             using (connection = new SqlConnection(connectionLine))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -38,7 +41,8 @@ namespace CustomList
                 command.Parameters.AddWithValue("@date_of_entry", date);
                 newID = Convert.ToInt32(command.ExecuteScalar());
             }
-            ConnectEntryAndCategory(Category, newID);
+            if(newID != 0)
+                ConnectEntryAndCategory(Category, newID);
         }
         private static int FindCategoryId(string Category)
         {
@@ -113,7 +117,7 @@ namespace CustomList
                 {
                     string name = dr[1].ToString();
                     string image = dr[2].ToString();
-                    double score = double.Parse(dr[3].ToString());
+                    int score = int.Parse(dr[3].ToString());
                     string des = dr[4].ToString();
                     string date = dr[5].ToString();
                     Entry entry = new Entry(name, image, score, des, date);
@@ -186,7 +190,7 @@ namespace CustomList
                 {
                     string name = dr[1].ToString();
                     string image = dr[2].ToString();
-                    double score = double.Parse(dr[3].ToString());
+                    int score = int.Parse(dr[3].ToString());
                     string des = dr[4].ToString();
                     string date = dr[5].ToString();
                     Entry entry = new Entry(name, image, score, des, date);
@@ -194,6 +198,25 @@ namespace CustomList
                 }
             }
             return data;
+        }
+        public static List<string> GetCategoriesList()
+        {
+            List<string> catList = new List<string>();
+            string query = "SELECT Category.name FROM Category";
+            using(connection = new SqlConnection(connectionLine))
+            using(SqlCommand command = new SqlCommand(query, connection))
+            using(SqlDataAdapter adapter = new SqlDataAdapter(command))
+            {
+                connection.Open();
+                DataTable catTable = new DataTable();
+                adapter.Fill(catTable);
+                foreach (DataRow dr in catTable.Rows)
+                {
+                    string name = dr[0].ToString();
+                    catList.Add(name);
+                }
+            }
+            return catList;
         }
     }
 }
