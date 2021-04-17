@@ -66,7 +66,7 @@ namespace AutomatedTests
         {
             desktopSession.FindElementByAccessibilityId("button1").Click();
             List<Entry> entries = DatabaseClass.GetDataByCategory("Movies", "");
-            
+
             NUnit.Framework.Assert.Greater(entries.Count, 0);
         }
 
@@ -106,6 +106,18 @@ namespace AutomatedTests
             desktopSession.FindElementByAccessibilityId("btnSave").Click();
         }
 
+        // Modifies entry from specified category
+        [Test]
+        public void TestModifyEntry()
+        {
+            desktopSession.FindElementByAccessibilityId("b_TvSeries").Click();
+            desktopSession.FindElementByAccessibilityId("btnDots0").Click();
+            desktopSession.FindElementByAccessibilityId("txtEntryName").SendKeys("ModifiedName");
+            string entryName = desktopSession.FindElementByAccessibilityId("lblEntryName0").Text;
+
+            NUnit.Framework.Assert.AreEqual("ModifiedName", entryName);
+        }
+
         // Removes the entry that was added in "TestInsertEntry"
         [Test]
         public void TestRemoveEntry()
@@ -121,28 +133,34 @@ namespace AutomatedTests
         [Test]
         public void TestFindEntry()
         {
+            desktopSession.FindElementByAccessibilityId("button1").Click();
+            desktopSession.FindElementByAccessibilityId("textBox1").SendKeys("es");
+            desktopSession.FindElementByAccessibilityId("btnSearch").Click();
+            string entryName = desktopSession.FindElementByAccessibilityId("lblEntryName0").Text;
 
-        }
-
-        // Modifies entry from specified category
-        [Test]
-        public void TestModifyEntry()
-        {
-
+            NUnit.Framework.Assert.AreEqual("Test", entryName);
+            //NUnit.Framework.Assert.AreEqual("Test", entryName);
         }
 
         // Sorts entries from the specified categories by their scores
         [Test]
         public void TestSortEntryScores()
         {
-
+            desktopSession.FindElementByAccessibilityId("button1").Click();
+            desktopSession.FindElementByAccessibilityId("btnSortScore").Click();
+            string entryName = desktopSession.FindElementByAccessibilityId("lblEntryName0").Text;
+            NUnit.Framework.Assert.AreEqual("Bee Movie", entryName);
         }
 
         // Sorts entries from the specified categories by their names
         [Test]
         public void TestSortEntryNames()
         {
+            desktopSession.FindElementByAccessibilityId("button1").Click();
+            desktopSession.FindElementByAccessibilityId("btnSortName").Click();
+            string entryName = desktopSession.FindElementByAccessibilityId("lblEntryName0").Text;
 
+            NUnit.Framework.Assert.AreEqual("The Terminator", entryName);
         }
     }
 }
