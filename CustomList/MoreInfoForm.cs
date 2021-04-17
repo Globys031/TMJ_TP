@@ -40,5 +40,10 @@ namespace CustomList
         {
             this.Close();
         }
+
+        private void btnSaveChanges_Click(object sender, EventArgs e)
+        {
+            //currently does nothing :(
+        }
     }
 }
