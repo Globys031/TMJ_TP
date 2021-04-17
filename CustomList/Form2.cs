@@ -40,7 +40,7 @@ namespace CustomList
             entryComponents.Add(new EntryComponent(entryComponents.Count + 1, ent, category));
 
             DatabaseClass.SetData(category, name, "", Int32.Parse(rating), description, dateTime);
-            parent.Controls.Add(entryComponents[entryComponents.Count - 1].mainPanel);
+            parent.DataPanel.Controls.Add(entryComponents[entryComponents.Count - 1].mainPanel);
 
             this.Close();
             this.Dispose();
