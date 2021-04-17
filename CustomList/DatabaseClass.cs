@@ -40,7 +40,7 @@ namespace CustomList
             }
             ConnectEntryAndCategory(Category, newID);
         }
-        private static int FindCategoryId(string Category)
+        public static int FindCategoryId(string Category)
         {
             int CatId = 0;
             string query = "SELECT a.Id FROM Category a WHERE a.name =@catname";
@@ -164,7 +164,7 @@ namespace CustomList
         /// <param name="Id">Category ID</param>
         /// <param name="name">The name of the entry to find</param>
         /// <returns></returns>
-        private static List<Entry> GetCategoryEntry(int Id, string entryName)
+        public static List<Entry> GetCategoryEntry(int Id, string entryName)
         {
             string query = @"SELECT Entry.* FROM Entry,
                              INNER JOIN CategoryEntry,

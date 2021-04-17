@@ -102,19 +102,21 @@ namespace CustomList
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnSearch.Location = new System.Drawing.Point(592, 0);
+            this.btnSearch.Location = new System.Drawing.Point(553, 0);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(33, 33);
             this.btnSearch.TabIndex = 5;
             this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(631, 6);
+            this.textBox1.Location = new System.Drawing.Point(592, 6);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(317, 22);
+            this.textBox1.Size = new System.Drawing.Size(352, 22);
             this.textBox1.TabIndex = 4;
+            this.textBox1.KeyUp += new KeyEventHandler(txtEnterUp);
             // 
             // btnSortName
             // 

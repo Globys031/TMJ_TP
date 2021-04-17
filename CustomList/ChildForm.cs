@@ -131,5 +131,31 @@ namespace CustomList
                 entryComponents.Add(entr);
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            DataPanel.Controls.Clear();
+            InitAddButton(DataPanel);
+            entryComponents.Clear();
+
+            string search = textBox1.Text;
+            if (search == "")
+                return;//should later add some message
+            var list = DatabaseClass.GetCategoryEntry(DatabaseClass.FindCategoryId(category), search);
+
+            int i = 0;
+            foreach (Entry ent in list)
+            {
+                EntryComponent entr = new EntryComponent(i, ent, category);
+                DataPanel.Controls.Add(entr.mainPanel);
+                entryComponents.Add(entr);
+            }
+        }
+
+        private void txtEnterUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+                btnSearch_Click(null, null);
+        }
     }
 }
