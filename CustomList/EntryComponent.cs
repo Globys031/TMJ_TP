@@ -191,14 +191,14 @@ namespace CustomList
             MoreInfoForm moreInfoForm = new MoreInfoForm(entry, category);
             moreInfoForm.Show();
             //this is very not good practise, but time is money :D
-            this.mainPanel.Parent.Parent.Parent.Enabled = false;
+            this.mainPanel.Parent.Parent.Parent.Parent.Enabled = false;
             moreInfoForm.FormClosed += MoreInfoForm_FormClosed;
         }
 
         private void MoreInfoForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.mainPanel.Parent.Parent.Parent.Enabled = true;
-            var parent = mainPanel.Parent as ChildForm;
+            this.mainPanel.Parent.Parent.Parent.Parent.Enabled = true;
+            var parent = mainPanel.Parent.Parent as ChildForm;
             //another error prone way to refresh the form, but oh well
             parent.Controls.Clear();
             parent.ChildForm_Load("", new EventArgs());
