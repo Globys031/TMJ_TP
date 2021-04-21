@@ -13,7 +13,10 @@ namespace CustomList
     {
         public static string ConnectionVal()
         {
-            
+            string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string path = (System.IO.Path.GetDirectoryName(executable));
+            AppDomain.CurrentDomain.SetData("DataDirectory", path);
+
             return ConfigurationManager.ConnectionStrings["ListDatabase"].ConnectionString;
         }
         public static string connectionLine = ConnectionVal();
