@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
 
 namespace CustomList
 {
@@ -14,7 +15,10 @@ namespace CustomList
         public static string ConnectionVal()
         {
             string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            string path = (System.IO.Path.GetDirectoryName(executable));
+            // This path only works within visual studio constraints.
+            // If I fire up the .exe file alone, it won't find .mdf file
+            // will need to change this if we'll want to properly deploy the program
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
 
             return ConfigurationManager.ConnectionStrings["ListDatabase"].ConnectionString;
