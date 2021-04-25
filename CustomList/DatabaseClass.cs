@@ -29,20 +29,23 @@ namespace CustomList
         #region buttons
 
         #endregion
-        public static void SetData(string Category, string name, string image, int score, string des, string date)
+        public static void SetData(string Category, string name, int score, string des, string date, byte[] image = null)
         {
             int CatId = FindCategoryId(Category);
             string query = "IF NOT EXISTS (SELECT * FROM Entry a INNER JOIN CategoryEntry b ON a.Id = b.EntryId " +
                 "WHERE b.CategoryId = " + CatId + " AND a.name = @name) BEGIN" +
                 " INSERT INTO Entry (name, image, score, description, date_of_entry)" +
-                " VALUES (@name, NULL, @score, @description, @date_of_entry); SELECT SCOPE_IDENTITY() END";
+                " VALUES (@name, @image, @score, @description, @date_of_entry); SELECT SCOPE_IDENTITY() END";
             int newID;
             using (connection = new SqlConnection(connectionLine))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 connection.Open();
                 command.Parameters.AddWithValue("@name", name);
-                //command.Parameters.AddWithValue("@image", 
+                if(image == null)
+                    command.Parameters.AddWithValue("@image", new byte[0]);
+                else
+                    command.Parameters.AddWithValue("@image", image);
                 command.Parameters.AddWithValue("@score", score);
                 command.Parameters.AddWithValue("@description", des);
                 command.Parameters.AddWithValue("@date_of_entry", date);
@@ -123,7 +126,9 @@ namespace CustomList
                 foreach (DataRow dr in catEntTable.Rows)
                 {
                     string name = dr[1].ToString();
-                    string image = dr[2].ToString();
+                    byte[] image = null;
+                    if (!(dr[2] is DBNull))// is not
+                        image = (byte[])dr[2];
                     int score = int.Parse(dr[3].ToString());
                     string des = dr[4].ToString();
                     string date = dr[5].ToString();

@@ -15,6 +15,7 @@ namespace CustomList
         private List<EntryComponent> entryComponents;
         private string category;
         private ChildForm parent;
+        private string posterPath;
         public Form2(List<EntryComponent> entryComponents, string category, ChildForm parent)
         {
             InitializeComponent();
@@ -36,10 +37,10 @@ namespace CustomList
             string description = txtEntryDescription.Text;
             string dateTime = dateRelease.Value.Date.ToShortDateString();
 
-            var ent = new Entry(name, "", Int32.Parse(rating), description, dateTime);
+            var ent = new Entry(name, openFileDialog1.FileName, Int32.Parse(rating), description, dateTime);
             entryComponents.Add(new EntryComponent(entryComponents.Count + 1, ent, category));
 
-            DatabaseClass.SetData(category, name, "", Int32.Parse(rating), description, dateTime);
+            DatabaseClass.SetData(category, name, Int32.Parse(rating), description, dateTime, ent.image);
             parent.DataPanel.Controls.Add(entryComponents[entryComponents.Count - 1].mainPanel);
 
             this.Close();
@@ -49,6 +50,12 @@ namespace CustomList
         private void Form2_Shown(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSelectPoster_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+           // posterPath = openFileDialog1.
         }
     }
 }
