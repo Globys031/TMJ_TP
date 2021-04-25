@@ -36,10 +36,10 @@ namespace CustomList
             string description = txtEntryDescription.Text;
             string dateTime = dateRelease.Value.Date.ToShortDateString();
 
-            var ent = new Entry(name, "", Double.Parse(rating), description, dateTime);
+            var ent = new Entry(name, "", Int32.Parse(rating), description, dateTime);
             entryComponents.Add(new EntryComponent(entryComponents.Count + 1, ent, category));
 
-            DatabaseClass.SetData(category, name, "", Double.Parse(rating), description, dateTime);
+            DatabaseClass.SetData(category, name, "", Int32.Parse(rating), description, dateTime);
             parent.DataPanel.Controls.Add(entryComponents[entryComponents.Count - 1].mainPanel);
 
             this.Close();

@@ -14,7 +14,7 @@ namespace CustomList
         internal static void InsertBasicEntry(Dictionary<string, List<Entry>> category, 
             string name,
             string image,
-            double score, 
+            int score, 
             string description,
             string date)
         {

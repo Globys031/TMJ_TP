@@ -1,9 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CustomList;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Remote;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 //Uses NUnit type tests and WinAppDriver
@@ -50,6 +51,45 @@ namespace AutomatedTests
             }
         }
 
+        // Tests whether the program can be properly turned
+        // on and off
+        [Test]
+        public void TestTurnOnAndOff()
+        {
+            desktopSession.FindElementByAccessibilityId("btnCloseForm").Click();
+        }
+
+        // Checks if all entries of the movies category
+        // are being returned
+        [Test]
+        public void TestReturnAllEntries()
+        {
+            desktopSession.FindElementByAccessibilityId("button1").Click();
+            List<Entry> entries = DatabaseClass.GetDataByCategory("Movies", "");
+
+            NUnit.Framework.Assert.Greater(entries.Count, 0);
+        }
+
+        // tests whether it's possible to navigate
+        // between the three main categories
+        [Test]
+        public void TestChangeBetweenCategories()
+        {
+            desktopSession.FindElementByAccessibilityId("button1").Click();
+            desktopSession.FindElementByAccessibilityId("b_TvSeries").Click();
+            desktopSession.FindElementByAccessibilityId("button3").Click();
+            desktopSession.FindElementByAccessibilityId("button1").Click();
+        }
+
+        // When there's too many elements, there should be a scrollbar
+        // which allows to properly navigate between elements
+        [Test]
+        public void TestScrollBar()
+        {
+            desktopSession.FindElementByAccessibilityId("button1").Click();
+            desktopSession.FindElementByAccessibilityId("ScrollbarThumb").Click();
+        }
+
         // Method won't work if there's too many entries in category
         // (That's because WinAppDriver is unable to see the "add" button
         [Test]
@@ -64,11 +104,63 @@ namespace AutomatedTests
             desktopSession.FindElementByAccessibilityId("txtEntryName").SendKeys("coolEntryName");
             desktopSession.FindElementByAccessibilityId("txtRating").SendKeys("8");
             desktopSession.FindElementByAccessibilityId("btnSave").Click();
-            // Later (after testing that "getEntry" actually works) add
-            // an assert statement to see that the entry actually got saved
-            // also after testing that delete works, add delete because
-            // right now there's multiple entries.
         }
 
+        // Modifies entry from specified category
+        [Test]
+        public void TestModifyEntry()
+        {
+            desktopSession.FindElementByAccessibilityId("b_TvSeries").Click();
+            desktopSession.FindElementByAccessibilityId("btnDots0").Click();
+            desktopSession.FindElementByAccessibilityId("txtEntryName").SendKeys("ModifiedName");
+            string entryName = desktopSession.FindElementByAccessibilityId("lblEntryName0").Text;
+
+            NUnit.Framework.Assert.AreEqual("ModifiedName", entryName);
+        }
+
+        // Removes the entry that was added in "TestInsertEntry"
+        [Test]
+        public void TestRemoveEntry()
+        {
+            // AccessibilityId is "Automation ID" on "inspect.exe"
+            desktopSession.FindElementByAccessibilityId("b_TvSeries").Click();
+            desktopSession.FindElementByAccessibilityId("btnDots0").Click();
+            desktopSession.FindElementByAccessibilityId("btnDeleteEntry").Click();
+            desktopSession.FindElementByAccessibilityId("btnDeleteEntry").Click();
+        }
+
+        // Finds specified entry in the specified category
+        [Test]
+        public void TestFindEntry()
+        {
+            desktopSession.FindElementByAccessibilityId("button1").Click();
+            desktopSession.FindElementByAccessibilityId("textBox1").SendKeys("es");
+            desktopSession.FindElementByAccessibilityId("btnSearch").Click();
+            string entryName = desktopSession.FindElementByAccessibilityId("lblEntryName0").Text;
+
+            NUnit.Framework.Assert.AreEqual("Test", entryName);
+            //NUnit.Framework.Assert.AreEqual("Test", entryName);
+        }
+
+        // Sorts entries from the specified categories by their scores
+        [Test]
+        public void TestSortEntryScores()
+        {
+            desktopSession.FindElementByAccessibilityId("button1").Click();
+            desktopSession.FindElementByAccessibilityId("btnSortScore").Click();
+            string entryName = desktopSession.FindElementByAccessibilityId("lblEntryName0").Text;
+            NUnit.Framework.Assert.AreEqual("Bee Movie", entryName);
+        }
+
+        // Sorts entries from the specified categories by their names
+        [Test]
+        public void TestSortEntryNames()
+        {
+            desktopSession.FindElementByAccessibilityId("button1").Click();
+            desktopSession.FindElementByAccessibilityId("btnSortName").Click();
+            string entryName = desktopSession.FindElementByAccessibilityId("lblEntryName0").Text;
+
+            NUnit.Framework.Assert.AreEqual("The Terminator", entryName);
+        }
     }
 }
