@@ -202,7 +202,9 @@ namespace CustomList
                 foreach (DataRow dr in catEntTable.Rows)
                 {
                     string name = dr[1].ToString();
-                    string image = dr[2].ToString();
+                    byte[] image = null;
+                    if (!(dr[2] is DBNull))// is not
+                        image = (byte[])dr[2];
                     int score = int.Parse(dr[3].ToString());
                     string des = dr[4].ToString();
                     string date = dr[5].ToString();
