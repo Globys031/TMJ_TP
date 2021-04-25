@@ -15,6 +15,7 @@ namespace CustomList
         private List<EntryComponent> entryComponents;
         private string category;
         private ChildForm parent;
+        private string posterPath;
         public Form2(List<EntryComponent> entryComponents, string category, ChildForm parent)
         {
             InitializeComponent();
@@ -46,7 +47,6 @@ namespace CustomList
                 lblAnyText.Text = ErrorMsg;
                 return;
             }
-
 
             var ent = new Entry(name, openFileDialog1.FileName, Int32.Parse(rating), description, dateTime);
             entryComponents.Add(new EntryComponent(entryComponents.Count + 1, ent, category));
