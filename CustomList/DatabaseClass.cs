@@ -31,7 +31,7 @@ namespace CustomList
             string query = "IF NOT EXISTS (SELECT * FROM Entry a INNER JOIN CategoryEntry b ON a.Id = b.EntryId " +
                 "WHERE b.CategoryId = " + CatId + " AND a.name = @name) BEGIN" +
                 " INSERT INTO Entry (name, image, score, description, date_of_entry)" +
-                " VALUES (@name, NULL, @score, @description, @date_of_entry); SELECT SCOPE_IDENTITY() END";
+                " VALUES (@name, @image, @score, @description, @date_of_entry); SELECT SCOPE_IDENTITY() END";
             int newID;
             using (connection = new SqlConnection(connectionLine))
             using (SqlCommand command = new SqlCommand(query, connection))
