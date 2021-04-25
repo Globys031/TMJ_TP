@@ -39,7 +39,7 @@ namespace CustomList
             string description = txtEntryDescription.Text;
             string dateTime = dateRelease.Value.Date.ToShortDateString();
 
-            var errors = ValidateFields(name, description);
+            var errors = ValidateFields(name);
             string ErrorMsg;
             if (errors != "")
             {
@@ -67,7 +67,7 @@ namespace CustomList
         {
             openFileDialog1.ShowDialog();
         }
-        private string ValidateFields(string name, string description)
+        private string ValidateFields(string name)
         {
             string error = "";
             if(name.Length == 0)
@@ -78,11 +78,7 @@ namespace CustomList
             {
                 error += " name of your entry must not longer than 50 characters.";
             }
-            if(description.Length == 0)
-            {
-                error += " description must not be empty.";
-            }
-            if(openFileDialog1.FileName != "")
+            if(openFileDialog1.FileName != "" && openFileDialog1.FileName != "openFileDialog1")
             {
                 try
                 {
