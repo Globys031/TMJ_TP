@@ -107,7 +107,10 @@ namespace CustomList
             scoreAndWatchesPanel.Size = new System.Drawing.Size(173, 36);
 
             entryPoster.Dock = System.Windows.Forms.DockStyle.Top;
-            entryPoster.Image = Properties.Resources.Borat;
+            if (entry.image != null)
+                entryPoster.Image = entry.GetImage();
+            else
+                entryPoster.Image = Properties.Resources.Borat;
             entryPoster.Location = new System.Drawing.Point(0, 0);
             entryPoster.Name = "pictureBox1";
             entryPoster.Size = new System.Drawing.Size(173, 225);

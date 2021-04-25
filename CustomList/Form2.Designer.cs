@@ -50,6 +50,7 @@
             this.btnSelectPoster.TabIndex = 1;
             this.btnSelectPoster.Text = "Select Poster";
             this.btnSelectPoster.UseVisualStyleBackColor = true;
+            this.btnSelectPoster.Click += new System.EventHandler(this.btnSelectPoster_Click);
             // 
             // txtEntryName
             // 
