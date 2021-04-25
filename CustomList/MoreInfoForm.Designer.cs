@@ -29,16 +29,18 @@
         private void InitializeComponent()
         {
             this.TopPanel = new System.Windows.Forms.Panel();
-            this.BottonPanel = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnDeleteEntry = new System.Windows.Forms.Button();
-            this.TextPanel = new System.Windows.Forms.Panel();
-            this.lblAnyText = new System.Windows.Forms.Label();
-            this.btnSaveChanges = new System.Windows.Forms.Button();
             this.txtEntryDescription = new System.Windows.Forms.RichTextBox();
             this.dateRelease = new System.Windows.Forms.DateTimePicker();
             this.txtRating = new System.Windows.Forms.TextBox();
             this.txtEntryName = new System.Windows.Forms.TextBox();
+            this.BottonPanel = new System.Windows.Forms.Panel();
+            this.btnSaveChanges = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnDeleteEntry = new System.Windows.Forms.Button();
+            this.TextPanel = new System.Windows.Forms.Panel();
+            this.lblAnyText = new System.Windows.Forms.Label();
+            this.btnSelectPoster = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.TopPanel.SuspendLayout();
             this.BottonPanel.SuspendLayout();
             this.TextPanel.SuspendLayout();
@@ -56,9 +58,41 @@
             this.TopPanel.Size = new System.Drawing.Size(768, 346);
             this.TopPanel.TabIndex = 0;
             // 
+            // txtEntryDescription
+            // 
+            this.txtEntryDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEntryDescription.DetectUrls = false;
+            this.txtEntryDescription.Location = new System.Drawing.Point(0, 98);
+            this.txtEntryDescription.Name = "txtEntryDescription";
+            this.txtEntryDescription.Size = new System.Drawing.Size(768, 96);
+            this.txtEntryDescription.TabIndex = 12;
+            this.txtEntryDescription.Text = "Description of your entry here..";
+            // 
+            // dateRelease
+            // 
+            this.dateRelease.Location = new System.Drawing.Point(548, 37);
+            this.dateRelease.Name = "dateRelease";
+            this.dateRelease.Size = new System.Drawing.Size(220, 22);
+            this.dateRelease.TabIndex = 11;
+            // 
+            // txtRating
+            // 
+            this.txtRating.Location = new System.Drawing.Point(448, 37);
+            this.txtRating.Name = "txtRating";
+            this.txtRating.Size = new System.Drawing.Size(75, 22);
+            this.txtRating.TabIndex = 10;
+            // 
+            // txtEntryName
+            // 
+            this.txtEntryName.Location = new System.Drawing.Point(0, 37);
+            this.txtEntryName.Name = "txtEntryName";
+            this.txtEntryName.Size = new System.Drawing.Size(424, 22);
+            this.txtEntryName.TabIndex = 9;
+            // 
             // BottonPanel
             // 
             this.BottonPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.BottonPanel.Controls.Add(this.btnSelectPoster);
             this.BottonPanel.Controls.Add(this.btnSaveChanges);
             this.BottonPanel.Controls.Add(this.btnClose);
             this.BottonPanel.Controls.Add(this.btnDeleteEntry);
@@ -68,6 +102,21 @@
             this.BottonPanel.Name = "BottonPanel";
             this.BottonPanel.Size = new System.Drawing.Size(768, 79);
             this.BottonPanel.TabIndex = 1;
+            // 
+            // btnSaveChanges
+            // 
+            this.btnSaveChanges.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSaveChanges.FlatAppearance.BorderSize = 0;
+            this.btnSaveChanges.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveChanges.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveChanges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnSaveChanges.Location = new System.Drawing.Point(178, 30);
+            this.btnSaveChanges.Name = "btnSaveChanges";
+            this.btnSaveChanges.Size = new System.Drawing.Size(178, 49);
+            this.btnSaveChanges.TabIndex = 3;
+            this.btnSaveChanges.Text = "Save Changes";
+            this.btnSaveChanges.UseVisualStyleBackColor = true;
+            this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
             // 
             // btnClose
             // 
@@ -118,51 +167,24 @@
             this.lblAnyText.Size = new System.Drawing.Size(768, 30);
             this.lblAnyText.TabIndex = 0;
             // 
-            // btnSaveChanges
+            // btnSelectPoster
             // 
-            this.btnSaveChanges.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnSaveChanges.FlatAppearance.BorderSize = 0;
-            this.btnSaveChanges.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveChanges.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveChanges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btnSaveChanges.Location = new System.Drawing.Point(178, 30);
-            this.btnSaveChanges.Name = "btnSaveChanges";
-            this.btnSaveChanges.Size = new System.Drawing.Size(178, 49);
-            this.btnSaveChanges.TabIndex = 3;
-            this.btnSaveChanges.Text = "Save Changes";
-            this.btnSaveChanges.UseVisualStyleBackColor = true;
-            this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
+            this.btnSelectPoster.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSelectPoster.FlatAppearance.BorderSize = 0;
+            this.btnSelectPoster.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelectPoster.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectPoster.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnSelectPoster.Location = new System.Drawing.Point(356, 30);
+            this.btnSelectPoster.Name = "btnSelectPoster";
+            this.btnSelectPoster.Size = new System.Drawing.Size(178, 49);
+            this.btnSelectPoster.TabIndex = 4;
+            this.btnSelectPoster.Text = "Select Poster";
+            this.btnSelectPoster.UseVisualStyleBackColor = true;
+            this.btnSelectPoster.Click += new System.EventHandler(this.button1_Click);
             // 
-            // txtEntryDescription
+            // openFileDialog1
             // 
-            this.txtEntryDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtEntryDescription.DetectUrls = false;
-            this.txtEntryDescription.Location = new System.Drawing.Point(0, 98);
-            this.txtEntryDescription.Name = "txtEntryDescription";
-            this.txtEntryDescription.Size = new System.Drawing.Size(768, 96);
-            this.txtEntryDescription.TabIndex = 12;
-            this.txtEntryDescription.Text = "Description of your entry here..";
-            // 
-            // dateRelease
-            // 
-            this.dateRelease.Location = new System.Drawing.Point(548, 37);
-            this.dateRelease.Name = "dateRelease";
-            this.dateRelease.Size = new System.Drawing.Size(220, 22);
-            this.dateRelease.TabIndex = 11;
-            // 
-            // txtRating
-            // 
-            this.txtRating.Location = new System.Drawing.Point(448, 37);
-            this.txtRating.Name = "txtRating";
-            this.txtRating.Size = new System.Drawing.Size(75, 22);
-            this.txtRating.TabIndex = 10;
-            // 
-            // txtEntryName
-            // 
-            this.txtEntryName.Location = new System.Drawing.Point(0, 37);
-            this.txtEntryName.Name = "txtEntryName";
-            this.txtEntryName.Size = new System.Drawing.Size(424, 22);
-            this.txtEntryName.TabIndex = 9;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // MoreInfoForm
             // 
@@ -197,5 +219,7 @@
         private System.Windows.Forms.DateTimePicker dateRelease;
         private System.Windows.Forms.TextBox txtRating;
         private System.Windows.Forms.TextBox txtEntryName;
+        private System.Windows.Forms.Button btnSelectPoster;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

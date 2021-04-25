@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
@@ -51,43 +52,47 @@ namespace CustomList
         {
             Image img = Image.FromFile(path);
             ImageConverter _imageConverter = new ImageConverter();
-            image = (byte[])_imageConverter.ConvertTo(img, typeof(byte[]));
-            var compressed = CompressBuffer(image);
+            var tmp = (byte[])_imageConverter.ConvertTo(img, typeof(byte[]));
+            image = Compress(tmp);
         }
 
-        private static byte[] CompressBuffer(byte[] byteArray)
+        private static byte[] Compress(byte[] inputData)
         {
-            MemoryStream strm = new MemoryStream();
-            GZipStream GZipStrem = new GZipStream(strm, CompressionMode.Compress, true);
-            GZipStrem.Write(byteArray, 0, byteArray.Length);
-            GZipStrem.Flush();
-            strm.Flush();
-            byte[] ByteArrayToreturn = strm.GetBuffer();
-            GZipStrem.Close();
-            strm.Close();
-            return ByteArrayToreturn;
-        }
-        private static byte[] DeCompressBuffer(byte[] byteArray)
-        {
-            MemoryStream strm = new MemoryStream(byteArray);
-            GZipStream GZipStrem = new GZipStream(strm, CompressionMode.Decompress, true);
-            List<byte> ByteListUncompressedData = new List<byte>();
+            if (inputData == null)
+                throw new ArgumentNullException("inputData must be non-null");
 
-            int bytesRead = GZipStrem.ReadByte();
-            while (bytesRead != -1)
+            using (var compressIntoMs = new MemoryStream())
             {
-                ByteListUncompressedData.Add((byte)bytesRead);
-                bytesRead = GZipStrem.ReadByte();
+                using (var gzs = new BufferedStream(new GZipStream(compressIntoMs,
+                 CompressionMode.Compress), inputData.Length))
+                {
+                    gzs.Write(inputData, 0, inputData.Length);
+                }
+                return compressIntoMs.ToArray();
             }
-            GZipStrem.Flush();
-            strm.Flush();
-            GZipStrem.Close();
-            strm.Close();
-            return ByteListUncompressedData.ToArray();
+        }
+
+        private static byte[] Decompress(byte[] inputData)
+        {
+            if (inputData == null)
+                throw new ArgumentNullException("inputData must be non-null");
+
+            using (var compressedMs = new MemoryStream(inputData))
+            {
+                using (var decompressedMs = new MemoryStream())
+                {
+                    using (var gzs = new BufferedStream(new GZipStream(compressedMs,
+                     CompressionMode.Decompress), inputData.Length))
+                    {
+                        gzs.CopyTo(decompressedMs);
+                    }
+                    return decompressedMs.ToArray();
+                }
+            }
         }
         public Image GetImage()
         {
-            using (var ms = new MemoryStream(image))
+            using (var ms = new MemoryStream(Decompress(image)))
             {
                 return Image.FromStream(ms);
             }
