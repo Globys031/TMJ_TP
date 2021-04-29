@@ -38,27 +38,17 @@ namespace CustomList
         {
             if (Controls.Count == 0)//when this is called if an entry is deleted the controls should be empty
                 InitializeComponent();//need to init because it also has that big plus button
-            //otherwise it wont load, only the entries
-            switch (type)
-            {//should probably add some settings that could probably stored in a settings.json
-                case ChildFormType.Category:
-                    //will display all entries of this category
-                    entryComponents = new List<EntryComponent>();
 
-                    var entries = DatabaseClass.GetDataByCategory(category, "");
+            entryComponents = new List<EntryComponent>();
 
-                    int i = 0;
-                    foreach(Entry ent in entries)
-                    {
-                        EntryComponent entr = new EntryComponent(i, ent, category);
-                        DataPanel.Controls.Add(entr.mainPanel);
-                        entryComponents.Add(entr);
-                    }
-                    break;
-                case ChildFormType.Dashboard:
-                    Label label = new Label() { Text = "Cool statistic here", Dock = DockStyle.Left };
-                    Controls.Add(label);
-                    break;
+            var entries = DatabaseClass.GetDataByCategory(category, "");
+
+            int i = 0;
+            foreach(Entry ent in entries)
+            {
+                EntryComponent entr = new EntryComponent(i, ent, category);
+                DataPanel.Controls.Add(entr.mainPanel);
+                entryComponents.Add(entr);
             }
         }
 

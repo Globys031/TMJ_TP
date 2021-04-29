@@ -35,7 +35,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.b_TvSeries = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.b_Dashboard = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pfpic = new System.Windows.Forms.PictureBox();
             this.PnlFormLoader = new System.Windows.Forms.Panel();
@@ -56,7 +55,6 @@
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.b_TvSeries);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.b_Dashboard);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 39);
@@ -80,7 +78,7 @@
             this.b_custom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.b_custom.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.b_custom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.b_custom.Location = new System.Drawing.Point(809, 0);
+            this.b_custom.Location = new System.Drawing.Point(631, 0);
             this.b_custom.Name = "b_custom";
             this.b_custom.Size = new System.Drawing.Size(178, 97);
             this.b_custom.TabIndex = 1;
@@ -98,7 +96,7 @@
             this.button3.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.button3.Image = global::CustomList.Properties.Resources.anime;
-            this.button3.Location = new System.Drawing.Point(631, 0);
+            this.button3.Location = new System.Drawing.Point(453, 0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(178, 97);
             this.button3.TabIndex = 1;
@@ -116,7 +114,7 @@
             this.b_TvSeries.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.b_TvSeries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.b_TvSeries.Image = global::CustomList.Properties.Resources.tv;
-            this.b_TvSeries.Location = new System.Drawing.Point(453, 0);
+            this.b_TvSeries.Location = new System.Drawing.Point(275, 0);
             this.b_TvSeries.Name = "b_TvSeries";
             this.b_TvSeries.Size = new System.Drawing.Size(178, 97);
             this.b_TvSeries.TabIndex = 1;
@@ -134,7 +132,7 @@
             this.button1.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.button1.Image = global::CustomList.Properties.Resources.clapperboard;
-            this.button1.Location = new System.Drawing.Point(275, 0);
+            this.button1.Location = new System.Drawing.Point(97, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(178, 97);
             this.button1.TabIndex = 1;
@@ -143,24 +141,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             this.button1.Leave += new System.EventHandler(this.button1_Leave);
-            // 
-            // b_Dashboard
-            // 
-            this.b_Dashboard.Dock = System.Windows.Forms.DockStyle.Left;
-            this.b_Dashboard.FlatAppearance.BorderSize = 0;
-            this.b_Dashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.b_Dashboard.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_Dashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.b_Dashboard.Image = global::CustomList.Properties.Resources.home;
-            this.b_Dashboard.Location = new System.Drawing.Point(97, 0);
-            this.b_Dashboard.Name = "b_Dashboard";
-            this.b_Dashboard.Size = new System.Drawing.Size(178, 97);
-            this.b_Dashboard.TabIndex = 1;
-            this.b_Dashboard.Text = "Dashboard";
-            this.b_Dashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.b_Dashboard.UseVisualStyleBackColor = true;
-            this.b_Dashboard.Click += new System.EventHandler(this.b_Dashboard_Click);
-            this.b_Dashboard.Leave += new System.EventHandler(this.b_Dashboard_Leave);
             // 
             // panel2
             // 
@@ -259,7 +239,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button b_Dashboard;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pfpic;
         private System.Windows.Forms.Button b_custom;

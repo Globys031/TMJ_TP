@@ -49,7 +49,6 @@ namespace CustomList
         {
             //Filling list of buttons, so we can change colors when switching between forms
             Buttons = new List<Button>();
-            Buttons.Add(b_Dashboard);
             Buttons.Add(button1);
             Buttons.Add(b_TvSeries);
             Buttons.Add(button3);
@@ -60,31 +59,6 @@ namespace CustomList
 
 
         #region buttons
-
-        private void b_Dashboard_Click(object sender, EventArgs e)
-        {
-            ChangeBackButtonColor();
-            pn_Nav.Visible = true;
-            pn_Nav.Width = b_Dashboard.Width;
-            pn_Nav.Top = b_Dashboard.Top;
-            pn_Nav.Left = b_Dashboard.Left;
-            b_Dashboard.BackColor = Color.FromArgb(46, 51, 73);
-
-            foreach(Control control in PnlFormLoader.Controls)
-            {
-                Console.WriteLine(control.ToString());
-                control.Dispose();//prevent memory leak
-            }
-            ChildForm childForm = new ChildForm(ChildFormType.Dashboard, "")
-            {
-                Dock = DockStyle.Fill,
-                TopLevel = false,
-                TopMost = true,
-                Size = PnlFormLoader.Size
-            };
-            PnlFormLoader.Controls.Add(childForm);
-            childForm.Show();
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
