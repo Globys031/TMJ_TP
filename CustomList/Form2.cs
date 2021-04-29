@@ -15,7 +15,6 @@ namespace CustomList
         private List<EntryComponent> entryComponents;
         private string category;
         private ChildForm parent;
-        private string posterPath;
         public Form2(List<EntryComponent> entryComponents, string category, ChildForm parent)
         {
             InitializeComponent();
@@ -70,13 +69,13 @@ namespace CustomList
         private string ValidateFields(string name)
         {
             string error = "";
-            if(name.Length == 0)
+            if(name.Length == 0 || name == "Title of your entry here...")//should probably display a different error msg for default title
             {
                 error += " name of your entry must not be empty.";
             }
             else if (name.Length > 50)
             {
-                error += " name of your entry must not longer than 50 characters.";
+                error += " name of your entry must not be longer than 50 characters.";
             }
             if(openFileDialog1.FileName != "" && openFileDialog1.FileName != "openFileDialog1")
             {
@@ -90,6 +89,18 @@ namespace CustomList
                 }
             }
             return error;
+        }
+
+        private void txtEntryName_Click(object sender, EventArgs e)
+        {
+            if (txtEntryName.Text == "Title of your entry here...")
+                txtEntryName.Text = "";
+        }
+
+        private void txtEntryDescription_Click(object sender, EventArgs e)
+        {
+            if (txtEntryDescription.Text == "Description of your entry here..")
+                txtEntryDescription.Text = "";
         }
     }
 }
