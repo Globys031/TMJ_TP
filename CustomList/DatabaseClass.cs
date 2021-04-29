@@ -14,11 +14,9 @@ namespace CustomList
     {
         public static string ConnectionVal()
         {
-            string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            // This path only works within visual studio constraints.
-            // If I fire up the .exe file alone, it won't find .mdf file
-            // will need to change this if we'll want to properly deploy the program
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            char[] toTrim = { 'b', 'i', 'n', '\\', '\\', 'D', 'e', 'b', 'u', 'g', '\\', '\\' };
+            path = path.TrimEnd(toTrim);
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
 
             return ConfigurationManager.ConnectionStrings["ListDatabase"].ConnectionString;
