@@ -134,14 +134,15 @@ namespace CustomList
             btnDots.MouseClick += new System.Windows.Forms.MouseEventHandler(btnDotsClicked);
 
             //entry name
-            lblEntryName.AutoSize = true;
-            lblEntryName.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblEntryName.Dock = DockStyle.Fill;
+            lblEntryName.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             lblEntryName.ForeColor = System.Drawing.Color.FromArgb(0, 126, 249);
-            lblEntryName.Location = new System.Drawing.Point(0, 2);
             lblEntryName.Name = "lblEntryName" + index;
-            lblEntryName.Size = new System.Drawing.Size(69, 23);
             lblEntryName.Text = entry.name;
             lblEntryName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            //workaround for Label's inability to center text/change line spacing
+            if (entry.name.Length > 16)
+                lblEntryName.Text = entry.name.Substring(0, 14) + "..";
 
             watchCountPanel.Controls.Add(lblWatchCount);
             watchCountPanel.Dock = System.Windows.Forms.DockStyle.Left;
