@@ -84,6 +84,9 @@ namespace CustomList
             btnIncrementWatch.Size = new System.Drawing.Size(173, 35);
             btnIncrementWatch.SizeMode = PictureBoxSizeMode.StretchImage;
             btnIncrementWatch.TabStop = false;
+            btnIncrementWatch.MouseEnter += new System.EventHandler(btnIncrementHover);
+            btnIncrementWatch.MouseLeave += new System.EventHandler(btnIncrementHoverLeave);
+            btnIncrementWatch.MouseClick += new System.Windows.Forms.MouseEventHandler(btnIncrementClicked);
 
             moreEntryInfoPanel.BorderStyle = BorderStyle.FixedSingle;
             moreEntryInfoPanel.Controls.Add(btnDots);
@@ -155,7 +158,7 @@ namespace CustomList
             lblWatchCount.Location = new System.Drawing.Point(3, 0);
             lblWatchCount.Name = "lblWatchCount" + index;
             lblWatchCount.Size = new System.Drawing.Size(40, 36);
-            lblWatchCount.Text = "12";
+            lblWatchCount.Text = "0";//entry.watchcount; turetu but kazkas panasaus
             lblWatchCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 
             ratingPanel.Controls.Add(this.picStar);
@@ -180,6 +183,26 @@ namespace CustomList
             lblRating.Name = "lblRating" + index;
             lblRating.Size = new System.Drawing.Size(35, 36);
             lblRating.Text = entry.score.ToString();
+        }
+
+        private void btnIncrementClicked(object sender, MouseEventArgs e)
+        {
+            //va cia rasyk koda, cia kai paspausi sita metoda kvies
+            //reikia 
+            //entry.watchCount++;
+            //lblWatchCount.Text = entry.watchCount.ToString();
+            //cia temporary code
+            lblWatchCount.Text = ((Int32.Parse(lblWatchCount.Text)) + 1).ToString();
+        }
+
+        private void btnIncrementHoverLeave(object sender, EventArgs e)
+        {
+            btnIncrementWatch.BorderStyle = BorderStyle.None;
+        }
+
+        private void btnIncrementHover(object sender, EventArgs e)
+        {
+            btnIncrementWatch.BorderStyle = BorderStyle.FixedSingle;
         }
 
         public void btnDotsHover(object sender, EventArgs e)
