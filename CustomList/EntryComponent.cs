@@ -15,7 +15,7 @@ namespace CustomList
 
         private ComponentResourceManager resources;
 
-        private Entry entry;
+        public Entry entry;
         private string category;
 
         private Panel childPanel;
@@ -158,7 +158,8 @@ namespace CustomList
             lblWatchCount.Location = new System.Drawing.Point(3, 0);
             lblWatchCount.Name = "lblWatchCount" + index;
             lblWatchCount.Size = new System.Drawing.Size(40, 36);
-            lblWatchCount.Text = "0";//entry.watchcount; turetu but kazkas panasaus
+            //lblWatchCount.Text = "0";//entry.watchcount; turetu but kazkas panasaus
+            lblWatchCount.Text = entry.watchCount.ToString();
             lblWatchCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 
             ratingPanel.Controls.Add(this.picStar);
@@ -187,12 +188,8 @@ namespace CustomList
 
         private void btnIncrementClicked(object sender, MouseEventArgs e)
         {
-            //va cia rasyk koda, cia kai paspausi sita metoda kvies
-            //reikia 
-            //entry.watchCount++;
-            //lblWatchCount.Text = entry.watchCount.ToString();
-            //cia temporary code
-            lblWatchCount.Text = ((Int32.Parse(lblWatchCount.Text)) + 1).ToString();
+            entry.watchCount += 1;
+            lblWatchCount.Text = entry.watchCount.ToString();
         }
 
         private void btnIncrementHoverLeave(object sender, EventArgs e)

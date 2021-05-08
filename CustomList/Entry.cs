@@ -15,29 +15,32 @@ namespace CustomList
         public string description { get; private set; } // description of the entry
         public byte[] image { get; private set; }
         public string date { get; private set; }
+        public int watchCount { get; set; }
         // later on the user will be able to add aditional columns as he desires
         // (e.g. progress, location, ect...)
         private string[] additionalColumns;
 
-        public Entry(string Name, string Image, int Score, string Description, string Date)
+        public Entry(string Name, string Image, int Score, string Description, string Date, int WatchCount)
         {
             this.name = Name;
             this.score = Score;
             this.description = Description;
             this.date = Date;
+            this.watchCount = WatchCount;
             if (Image != "openFileDialog1" && Image.Length != 0)//this is the default path if nothing has been selected
             {
                 ConvertPathToBytes(Image);
             }
         }
 
-        public Entry(string Name, byte[] Image, int Score, string Description, string Date)
+        public Entry(string Name, byte[] Image, int Score, string Description, string Date, int WatchCount)
         {
             this.name = Name;
             this.score = Score;
             this.description = Description;
             this.date = Date;
             this.image = Image;
+            this.watchCount = WatchCount;
         }
         public Entry(string Name)
         {

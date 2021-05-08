@@ -130,7 +130,8 @@ namespace CustomList
                     int score = int.Parse(dr[3].ToString());
                     string des = dr[4].ToString();
                     string date = dr[5].ToString();
-                    Entry entry = new Entry(name, image, score, des, date);
+                    int count = int.Parse(dr[6].ToString());
+                    Entry entry = new Entry(name, image, score, des, date, count);
                     data.Add(entry);
                 }
             }
@@ -206,7 +207,8 @@ namespace CustomList
                     int score = int.Parse(dr[3].ToString());
                     string des = dr[4].ToString();
                     string date = dr[5].ToString();
-                    Entry entry = new Entry(name, image, score, des, date);
+                    int count = int.Parse(dr[6].ToString());
+                    Entry entry = new Entry(name, image, score, des, date, count);
                     data.Add(entry);
                 }
             }
@@ -231,11 +233,11 @@ namespace CustomList
             }
             return catList;
         }
-        public static void UpdateEntries(string category, string oldName, string newName, int newScore, string newDes, string newDate, byte[] newImage = null)
+        public static void UpdateEntries(string category, string oldName, string newName, int newScore, string newDes, string newDate, int count, byte[] newImage = null)
         {
             int CatID = FindCategoryId(category);
             string query = "UPDATE Entry " +
-                "SET name = @name, image = @image, score = @score, description = @des, date_of_entry = @date " +
+                "SET name = @name, image = @image, score = @score, description = @des, date_of_entry = @date, watch_count = @count " +
                 "FROM Entry INNER JOIN CategoryEntry ON CategoryEntry.CategoryId = @catID AND CategoryEntry.EntryId = Entry.Id " +
                 "WHERE Entry.name = @nameSearch";
             using (connection = new SqlConnection(connectionLine))
@@ -251,6 +253,7 @@ namespace CustomList
                 command.Parameters.AddWithValue("@score", newScore);
                 command.Parameters.AddWithValue("@des", newDes);
                 command.Parameters.AddWithValue("@date", newDate);
+                command.Parameters.AddWithValue("@count", count);
                 command.ExecuteScalar();
             }
         }
