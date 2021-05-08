@@ -52,7 +52,7 @@ namespace CustomList
             Buttons.Add(button1);
             Buttons.Add(b_TvSeries);
             Buttons.Add(button3);
-            Buttons.Add(b_custom);
+            Buttons.Add(b_addCat);
         }
 
         #endregion
@@ -74,7 +74,7 @@ namespace CustomList
                 control.Dispose();//prevent memory leak
             }
             PnlFormLoader.Controls.Clear();
-            ChildForm childForm = new ChildForm(ChildFormType.Category, "Movies")
+            ChildForm childForm = new ChildForm(PnlFormLoader.Size, "Movies")
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -99,7 +99,7 @@ namespace CustomList
                 control.Dispose();//prevent memory leak
             }
             PnlFormLoader.Controls.Clear();
-            ChildForm childForm = new ChildForm(ChildFormType.Category, "TV_Series")
+            ChildForm childForm = new ChildForm(PnlFormLoader.Size, "TV_Series")
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -124,7 +124,7 @@ namespace CustomList
             {
                 control.Dispose();
             }
-            ChildForm childForm = new ChildForm(ChildFormType.Category, "Anime")
+            ChildForm childForm = new ChildForm(PnlFormLoader.Size, "Anime")
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -139,25 +139,23 @@ namespace CustomList
         {
             ChangeBackButtonColor();
             pn_Nav.Visible = true;
-            pn_Nav.Width = b_custom.Width;
-            pn_Nav.Top = b_custom.Top;
-            pn_Nav.Left = b_custom.Left;
-            b_custom.BackColor = Color.FromArgb(46, 51, 73);
+            pn_Nav.Width = b_addCat.Width;
+            pn_Nav.Top = b_addCat.Top;
+            pn_Nav.Left = b_addCat.Left;
+            b_addCat.BackColor = Color.FromArgb(46, 51, 73);
 
             foreach (Control control in PnlFormLoader.Controls)
             {
                 control.Dispose();//prevent memory leak
             }
-            PnlFormLoader.Controls.Clear();
-            ChildForm childForm = new ChildForm(ChildFormType.Category)
+            AddCatForm form = new AddCatForm()
             {
-                Dock = DockStyle.Fill,
+                Size = PnlFormLoader.Size,
                 TopLevel = false,
-                TopMost = true,
-                Size = PnlFormLoader.Size
+                Dock = DockStyle.Left
             };
-            PnlFormLoader.Controls.Add(childForm);
-            childForm.Show();
+            PnlFormLoader.Controls.Add(form);
+            form.Show();
         }
 
         private void b_Dashboard_Leave(object sender, EventArgs e)
