@@ -231,5 +231,28 @@ namespace CustomList
             }
             return catList;
         }
+        public static void UpdateEntries(string category, string oldName, string newName, int newScore, string newDes, string newDate, byte[] newImage = null)
+        {
+            int CatID = FindCategoryId(category);
+            string query = "UPDATE Entry " +
+                "SET name = @name, image = @image, score = @score, description = @des, date_of_entry = @date " +
+                "FROM Entry INNER JOIN CategoryEntry ON CategoryEntry.CategoryId = @catID AND CategoryEntry.EntryId = Entry.Id " +
+                "WHERE Entry.name = @nameSearch";
+            using (connection = new SqlConnection(connectionLine))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@catID", CatID);
+                command.Parameters.AddWithValue("@nameSearch", oldName);
+                command.Parameters.AddWithValue("@name", newName);
+                if (newImage == null)
+                    command.Parameters.AddWithValue("@image", new byte[0]);
+                else command.Parameters.AddWithValue("@image", newImage);
+                command.Parameters.AddWithValue("@score", newScore);
+                command.Parameters.AddWithValue("@des", newDes);
+                command.Parameters.AddWithValue("@date", newDate);
+                command.ExecuteScalar();
+            }
+        }
     }
 }
