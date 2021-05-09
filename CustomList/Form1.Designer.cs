@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pn_Nav = new System.Windows.Forms.FlowLayoutPanel();
-            this.b_custom = new System.Windows.Forms.Button();
+            this.b_addCat = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.b_TvSeries = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -47,7 +47,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
             this.panel1.Controls.Add(this.pn_Nav);
-            this.panel1.Controls.Add(this.b_custom);
+            this.panel1.Controls.Add(this.b_addCat);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.b_TvSeries);
             this.panel1.Controls.Add(this.button1);
@@ -66,22 +66,23 @@
             this.pn_Nav.TabIndex = 1;
             this.pn_Nav.Visible = false;
             // 
-            // b_custom
+            // b_addCat
             // 
-            this.b_custom.Dock = System.Windows.Forms.DockStyle.Left;
-            this.b_custom.FlatAppearance.BorderSize = 0;
-            this.b_custom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.b_custom.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b_custom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.b_custom.Location = new System.Drawing.Point(534, 0);
-            this.b_custom.Name = "b_custom";
-            this.b_custom.Size = new System.Drawing.Size(178, 97);
-            this.b_custom.TabIndex = 1;
-            this.b_custom.Text = "will scroll later";
-            this.b_custom.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.b_custom.UseVisualStyleBackColor = true;
-            this.b_custom.Click += new System.EventHandler(this.b_custom_Click);
-            this.b_custom.Leave += new System.EventHandler(this.b_custom_Leave);
+            this.b_addCat.Dock = System.Windows.Forms.DockStyle.Left;
+            this.b_addCat.FlatAppearance.BorderSize = 0;
+            this.b_addCat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.b_addCat.Font = new System.Drawing.Font("Nirmala UI", 35F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.b_addCat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.b_addCat.Location = new System.Drawing.Point(534, 0);
+            this.b_addCat.Name = "b_addCat";
+            this.b_addCat.Size = new System.Drawing.Size(178, 97);
+            this.b_addCat.TabIndex = 1;
+            this.b_addCat.Text = "+";
+            this.b_addCat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.b_addCat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.b_addCat.UseVisualStyleBackColor = true;
+            this.b_addCat.Click += new System.EventHandler(this.b_custom_Click);
+            this.b_addCat.Leave += new System.EventHandler(this.b_custom_Leave);
             // 
             // button3
             // 
@@ -155,9 +156,7 @@
             this.windowHandle.Size = new System.Drawing.Size(951, 39);
             this.windowHandle.TabIndex = 0;
             this.windowHandle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.windowHandle_MouseDown);
-            this.windowHandle.MouseLeave += new System.EventHandler(this.windowHandle_MouseLeave);
             this.windowHandle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.windowHandle_MouseMove);
-            this.windowHandle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.windowHandle_MouseUp);
             // 
             // btnMinimizeForm
             // 
@@ -213,7 +212,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button b_custom;
+        private System.Windows.Forms.Button b_addCat;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button b_TvSeries;
         private System.Windows.Forms.Button button1;

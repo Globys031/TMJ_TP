@@ -16,11 +16,12 @@ namespace CustomList
         ChildFormType type;
         List<EntryComponent> entryComponents;
         string category;
+        Size size;
 
-        public ChildForm(ChildFormType type, string category = null)
+        public ChildForm(Size size, string category = null)
         {
-            InitializeComponent();
-            this.type = type;
+            InitializeComponent(size);
+            this.size = size;
             this.category = category;
         }
 
@@ -37,7 +38,7 @@ namespace CustomList
         public void ChildForm_Shown(object sender, EventArgs e)
         {
             if (Controls.Count == 0)//when this is called if an entry is deleted the controls should be empty
-                InitializeComponent();//need to init because it also has that big plus button
+                InitializeComponent(size);//need to init because it also has that big plus button
 
             entryComponents = new List<EntryComponent>();
 
@@ -135,6 +136,36 @@ namespace CustomList
             string search = textBox1.Text;
             if (search == "")
                 return;//should later add some message
+            switch (search)//super secret dev commands hehe
+            {
+                case "!wipecats":
+                    var cats = DatabaseClass.GetCategoriesList();
+                    for (int j = 3; j < cats.Count; j++)
+                    {
+                        var entries = DatabaseClass.GetDataByCategory(cats[j], "");
+                        if (entries != null)
+                        {
+                            foreach (Entry entry in entries)
+                            {
+                                DatabaseClass.RemoveEntry(category, entry.name);
+                            }
+                        }
+                        DatabaseClass.RemoveCategory(cats[j]);
+                    }
+                    var pp = Parent.Parent as Form1;
+                    pp.RedrawCats();
+                    return;
+                case "!wipeentries":
+                    var entriess = DatabaseClass.GetDataByCategory(category, "");
+                    foreach (Entry entry in entriess)
+                    {
+                        DatabaseClass.RemoveEntry(category, entry.name);
+                    }
+                    return;
+                case "!wipeall":
+                    //not implement yet
+                    return;
+            }
             var list = DatabaseClass.GetCategoryEntry(DatabaseClass.FindCategoryId(category), search);
 
             int i = 0;

@@ -1,27 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using System.Runtime.InteropServices;
-using System.Data.SqlClient;
-//using System.Data;
 
 namespace CustomList
 {
     public partial class Form1 : Form
     {
         #region variables
-        protected List<Button> Buttons;
+        public List<string> Categories;
+        public List<Button> Buttons;
         bool mouseDown;
         Point delta;
-        bool mouseMove;
-        bool mouseUp;
+
 
         public enum ChildFormType
         {
@@ -43,16 +36,33 @@ namespace CustomList
         private void Form1_Load(object sender, EventArgs e)
         {
             Region = new Region(new Rectangle(0, 0, Width, Height));
+
+            //Fill list with categories
+            Categories = new List<string>();
+            foreach (string cat in DatabaseClass.GetCategoriesList())
+            {
+                Categories.Add(cat);
+            }
+
+            Buttons = new List<Button>();
+            Buttons.Add(button1);
+            Buttons.Add(button3);
+            Buttons.Add(b_TvSeries);
+            Buttons.Add(b_addCat);
+
+            bool added = false;
+            for (int i = 3; i < Categories.Count; i++)
+            {
+                added = true;
+                CreateAndAddCatBut(Categories[i], false);
+            }
+            if (added)
+                RedrawCats();
+
         }
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            //Filling list of buttons, so we can change colors when switching between forms
-            Buttons = new List<Button>();
-            Buttons.Add(button1);
-            Buttons.Add(b_TvSeries);
-            Buttons.Add(button3);
-            Buttons.Add(b_custom);
         }
 
         #endregion
@@ -74,7 +84,7 @@ namespace CustomList
                 control.Dispose();//prevent memory leak
             }
             PnlFormLoader.Controls.Clear();
-            ChildForm childForm = new ChildForm(ChildFormType.Category, "Movies")
+            ChildForm childForm = new ChildForm(PnlFormLoader.Size, "Movies")
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -99,7 +109,7 @@ namespace CustomList
                 control.Dispose();//prevent memory leak
             }
             PnlFormLoader.Controls.Clear();
-            ChildForm childForm = new ChildForm(ChildFormType.Category, "TV_Series")
+            ChildForm childForm = new ChildForm(PnlFormLoader.Size, "TV_Series")
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -124,7 +134,7 @@ namespace CustomList
             {
                 control.Dispose();
             }
-            ChildForm childForm = new ChildForm(ChildFormType.Category, "Anime")
+            ChildForm childForm = new ChildForm(PnlFormLoader.Size, "Anime")
             {
                 Dock = DockStyle.Fill,
                 TopLevel = false,
@@ -139,25 +149,37 @@ namespace CustomList
         {
             ChangeBackButtonColor();
             pn_Nav.Visible = true;
-            pn_Nav.Width = b_custom.Width;
-            pn_Nav.Top = b_custom.Top;
-            pn_Nav.Left = b_custom.Left;
-            b_custom.BackColor = Color.FromArgb(46, 51, 73);
+            pn_Nav.Width = b_addCat.Width;
+            pn_Nav.Top = b_addCat.Top;
+            pn_Nav.Left = b_addCat.Left;
+            b_addCat.BackColor = Color.FromArgb(46, 51, 73);
 
             foreach (Control control in PnlFormLoader.Controls)
             {
                 control.Dispose();//prevent memory leak
             }
-            PnlFormLoader.Controls.Clear();
-            ChildForm childForm = new ChildForm(ChildFormType.Category)
+            AddCatForm form = new AddCatForm(Categories)
             {
-                Dock = DockStyle.Fill,
+                Size = PnlFormLoader.Size,
                 TopLevel = false,
-                TopMost = true,
-                Size = PnlFormLoader.Size
+                Dock = DockStyle.Left
             };
-            PnlFormLoader.Controls.Add(childForm);
-            childForm.Show();
+            PnlFormLoader.Controls.Add(form);
+            form.FormClosed += AddCatForm_Closed;
+            form.Show();
+        }
+
+        private void AddCatForm_Closed(object sender, EventArgs e)
+        {
+            //Add Category Form was close, now we must check if our list of categories changed
+            //would be even better to have an event where that list changes and then calls this method
+            if(Categories.Last().Length > 40)
+            {
+                Categories.RemoveAt(Categories.Count - 1);//remove the dummy indicator value
+
+                //now create and add new button
+                CreateAndAddCatBut(Categories.Last());
+            }
         }
 
         private void b_Dashboard_Leave(object sender, EventArgs e)
@@ -228,21 +250,76 @@ namespace CustomList
             }
         }
 
-        private void windowHandle_MouseUp(object sender, MouseEventArgs e)
-        {
-            Console.WriteLine("mouseup");
-             mouseDown = false;
-        }
-
-        private void windowHandle_MouseLeave(object sender, EventArgs e)
-        {
-            Console.WriteLine("mouseleave");
-            mouseDown = false;
-        }
-
         private void btnMinimizeForm_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        protected void CreateAndAddCatBut(string cat, bool redraw = true)
+        {
+            Button button = new Button();
+            button.Dock = DockStyle.Left;
+            button.FlatAppearance.BorderSize = 0;
+            button.FlatStyle = FlatStyle.Flat;
+            button.Font = new Font("Nirmala UI", 10.2f, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button.ForeColor = Color.FromArgb(0, 126, 249);
+            //if we ever decide to add image do it here
+            //button.Location
+            button.Name = "btn_" + cat;
+            button.Size = new Size(134, 97);
+            button.Text = cat;
+            button.UseVisualStyleBackColor = true;
+            button.Click += new System.EventHandler(GenericCat_Click);
+
+            //add cat must be last
+            Buttons.Insert(Buttons.Count - 1, button);
+
+            if (redraw)
+            {
+                RedrawCats();
+            }
+        }
+
+        private void GenericCat_Click(object sender, EventArgs e)
+        {
+            var but = sender as Button;
+
+            ChangeBackButtonColor();
+            pn_Nav.Visible = true;
+            pn_Nav.Width = but.Width;
+            pn_Nav.Top = but.Top;
+            pn_Nav.Left = but.Left;
+            pn_Nav.BackColor = Color.FromArgb(46, 51, 73);
+
+            foreach (Control control in PnlFormLoader.Controls)
+            {
+                control.Dispose();//prevent memory leak
+            }
+            PnlFormLoader.Controls.Clear();
+            ChildForm childForm = new ChildForm(PnlFormLoader.Size, but.Text)
+            {
+                Dock = DockStyle.Fill,
+                TopLevel = false,
+                TopMost = true,
+                Size = PnlFormLoader.Size
+            };
+            PnlFormLoader.Controls.Add(childForm);
+            childForm.Show();
+        }
+
+        /// <summary>
+        /// Redraws category buttons in the correct order
+        /// We need to call this to display the category buttons correctly, because if you just add it
+        /// it will go to the front of the panel
+        /// </summary>
+        public void RedrawCats()
+        {
+            panel1.Controls.Clear();
+
+            for(int i = Buttons.Count - 1; i >= 0; i--)
+            {
+                panel1.Controls.Add(Buttons[i]);
+            }
         }
     }
 }

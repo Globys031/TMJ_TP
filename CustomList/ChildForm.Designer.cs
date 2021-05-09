@@ -28,7 +28,7 @@ namespace CustomList
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        private void InitializeComponent(System.Drawing.Size size)
         {
             this.dataPanelDuplicate = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -162,6 +162,8 @@ namespace CustomList
             // 
             // ChildForm
             // 
+            this.Size = size;
+            this.Dock = DockStyle.Fill;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
