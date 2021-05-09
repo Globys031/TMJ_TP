@@ -80,6 +80,10 @@ namespace CustomList
             {
                 foreach (EntryComponent entry in entryComponents)
                 {
+                    Entry cons = entry.entry;
+                    DatabaseClass.UpdateEntries(category, 
+                        cons.name, cons.name, cons.score, cons.description, 
+                        cons.date, cons.watchCount, cons.image);
                     entry.DestroyComponent();
                 }
                 btnAddEntry.Image.Dispose();

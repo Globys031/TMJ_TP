@@ -22,7 +22,7 @@ namespace CustomList
             if (!category.ContainsKey(name))
                 category.Add(name, new List<Entry>());
 
-            Entry entry = new Entry(name, image, score, description, date);
+            Entry entry = new Entry(name, image, score, description, date,0);
             // add the actual value
             category[name].Add(entry);
 

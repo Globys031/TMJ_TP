@@ -47,7 +47,7 @@ namespace CustomList
                 return;
             }
 
-            var ent = new Entry(name, openFileDialog1.FileName, Int32.Parse(rating), description, dateTime);
+            var ent = new Entry(name, openFileDialog1.FileName, Int32.Parse(rating), description, dateTime,0);
             entryComponents.Add(new EntryComponent(entryComponents.Count + 1, ent, category));
 
             DatabaseClass.SetData(category, name, Int32.Parse(rating), description, dateTime, ent.image);
