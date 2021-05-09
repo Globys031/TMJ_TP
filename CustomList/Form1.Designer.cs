@@ -156,9 +156,7 @@
             this.windowHandle.Size = new System.Drawing.Size(951, 39);
             this.windowHandle.TabIndex = 0;
             this.windowHandle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.windowHandle_MouseDown);
-            this.windowHandle.MouseLeave += new System.EventHandler(this.windowHandle_MouseLeave);
             this.windowHandle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.windowHandle_MouseMove);
-            this.windowHandle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.windowHandle_MouseUp);
             // 
             // btnMinimizeForm
             // 

@@ -99,6 +99,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddCatForm";
             this.Text = "AddForm";
+            //this.FormClosed += new System.EventHandler(Parent.btn)
             this.ControlsPanel.ResumeLayout(false);
             this.ControlsPanel.PerformLayout();
             this.panel1.ResumeLayout(false);

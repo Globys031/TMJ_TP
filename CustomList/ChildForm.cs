@@ -136,6 +136,36 @@ namespace CustomList
             string search = textBox1.Text;
             if (search == "")
                 return;//should later add some message
+            switch (search)//super secret dev commands hehe
+            {
+                case "!wipecats":
+                    var cats = DatabaseClass.GetCategoriesList();
+                    for (int j = 3; j < cats.Count; j++)
+                    {
+                        var entries = DatabaseClass.GetDataByCategory(cats[j], "");
+                        if (entries != null)
+                        {
+                            foreach (Entry entry in entries)
+                            {
+                                DatabaseClass.RemoveEntry(category, entry.name);
+                            }
+                        }
+                        DatabaseClass.RemoveCategory(cats[j]);
+                    }
+                    var pp = Parent.Parent as Form1;
+                    pp.RedrawCats();
+                    return;
+                case "!wipeentries":
+                    var entriess = DatabaseClass.GetDataByCategory(category, "");
+                    foreach (Entry entry in entriess)
+                    {
+                        DatabaseClass.RemoveEntry(category, entry.name);
+                    }
+                    return;
+                case "!wipeall":
+                    //not implement yet
+                    return;
+            }
             var list = DatabaseClass.GetCategoryEntry(DatabaseClass.FindCategoryId(category), search);
 
             int i = 0;
