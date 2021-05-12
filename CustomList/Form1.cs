@@ -315,10 +315,26 @@ namespace CustomList
         public void RedrawCats()
         {
             panel1.Controls.Clear();
-
-            for(int i = Buttons.Count - 1; i >= 0; i--)
+            Categories = new List<string>();
+            Categories = DatabaseClass.GetCategoriesList();
+            if (Categories.Count == 3)
             {
-                panel1.Controls.Add(Buttons[i]);
+                for (int i = 0; i < Buttons.Count - 1; i++)
+                {
+                    if (i == 3) 
+                    {
+                        Buttons.RemoveAt(i);
+                        i--;
+                    }
+                }
+                panel1.Controls.Add(Buttons[Buttons.Count - 1]);
+                for (int i = 3 - 1; i >= 0; i--)
+                    panel1.Controls.Add(Buttons[i]);
+            }
+            else 
+            {
+                for (int i = Buttons.Count - 1; i >= 0; i--)
+                    panel1.Controls.Add(Buttons[i]);
             }
         }
     }
