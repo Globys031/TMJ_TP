@@ -257,5 +257,29 @@ namespace CustomList
                 command.ExecuteScalar();
             }
         }
+        public static void RemoveAllEntries()
+        {
+            string query = "DELETE FROM Entry";
+            using (connection = new SqlConnection(connectionLine))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                command.ExecuteScalar();
+            }
+        }
+        public static void RemoveNonMandatoryCategories()
+        {
+            string query = "DELETE FROM Category " +
+                "WHERE Category.name != @name1 AND Category.name != @name2 AND Category.name != @name3";
+            using (connection = new SqlConnection(connectionLine))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@name1", "Movies");
+                command.Parameters.AddWithValue("@name2", "TV_Series");
+                command.Parameters.AddWithValue("@name3", "Anime");
+                command.ExecuteScalar();
+            }
+        }
     }
 }

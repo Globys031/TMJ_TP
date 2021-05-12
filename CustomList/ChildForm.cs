@@ -154,17 +154,20 @@ namespace CustomList
                     }
                     var pp = Parent.Parent as Form1;
                     pp.RedrawCats();
-                    return;
+                    break;
                 case "!wipeentries":
                     var entriess = DatabaseClass.GetDataByCategory(category, "");
                     foreach (Entry entry in entriess)
                     {
                         DatabaseClass.RemoveEntry(category, entry.name);
                     }
-                    return;
+                    break;
                 case "!wipeall":
-                    //not implement yet
-                    return;
+                    DatabaseClass.RemoveAllEntries();
+                    DatabaseClass.RemoveNonMandatoryCategories();
+                    var ppp = Parent.Parent as Form1;
+                    ppp.RedrawCats();
+                    break;
             }
             var list = DatabaseClass.GetCategoryEntry(DatabaseClass.FindCategoryId(category), search);
 
