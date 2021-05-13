@@ -51,6 +51,14 @@ namespace CustomList
             return this.additionalColumns[index];
         }
 
+        public void SetImage(string path)
+        {
+            if (path != "openFileDialog1" && path.Length != 0)//this is the default path if nothing has been selected
+            {
+                ConvertPathToBytes(path);
+            }
+        }
+
         private void ConvertPathToBytes(string path)
         {
             Image img = Image.FromFile(path);

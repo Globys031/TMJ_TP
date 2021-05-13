@@ -115,7 +115,7 @@ namespace CustomList
 
                 entryPoster.Image = entry.GetImage();
             else
-                entryPoster.Image = Properties.Resources.Borat;
+                entryPoster.Image = Properties.Resources.defaultPoster;
             entryPoster.Location = new System.Drawing.Point(0, 0);
             entryPoster.Name = "pictureBox1";
             entryPoster.Size = new System.Drawing.Size(173, 225);
