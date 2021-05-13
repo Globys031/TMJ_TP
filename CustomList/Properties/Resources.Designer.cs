@@ -83,9 +83,9 @@ namespace CustomList.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Borat {
+        internal static System.Drawing.Bitmap clapperboard {
             get {
-                object obj = ResourceManager.GetObject("Borat", resourceCulture);
+                object obj = ResourceManager.GetObject("clapperboard", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace CustomList.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap clapperboard {
+        internal static System.Drawing.Bitmap defaultPoster {
             get {
-                object obj = ResourceManager.GetObject("clapperboard", resourceCulture);
+                object obj = ResourceManager.GetObject("defaultPoster", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
