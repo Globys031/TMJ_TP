@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.drpdRating = new System.Windows.Forms.ComboBox();
             this.txtEntryDescription = new System.Windows.Forms.RichTextBox();
             this.dateRelease = new System.Windows.Forms.DateTimePicker();
             this.txtEntryName = new System.Windows.Forms.TextBox();
@@ -40,7 +41,7 @@
             this.TextPanel = new System.Windows.Forms.Panel();
             this.lblAnyText = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.drpdRating = new System.Windows.Forms.ComboBox();
+            this.txtWatchCount = new System.Windows.Forms.TextBox();
             this.TopPanel.SuspendLayout();
             this.BottonPanel.SuspendLayout();
             this.TextPanel.SuspendLayout();
@@ -49,6 +50,7 @@
             // TopPanel
             // 
             this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.TopPanel.Controls.Add(this.txtWatchCount);
             this.TopPanel.Controls.Add(this.drpdRating);
             this.TopPanel.Controls.Add(this.txtEntryDescription);
             this.TopPanel.Controls.Add(this.dateRelease);
@@ -58,6 +60,27 @@
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(600, 346);
             this.TopPanel.TabIndex = 0;
+            // 
+            // drpdRating
+            // 
+            this.drpdRating.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.drpdRating.FormattingEnabled = true;
+            this.drpdRating.Items.AddRange(new object[] {
+            "10",
+            "9",
+            "8",
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1"});
+            this.drpdRating.Location = new System.Drawing.Point(19, 92);
+            this.drpdRating.MaxDropDownItems = 10;
+            this.drpdRating.Name = "drpdRating";
+            this.drpdRating.Size = new System.Drawing.Size(121, 24);
+            this.drpdRating.TabIndex = 13;
             // 
             // txtEntryDescription
             // 
@@ -180,26 +203,12 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // drpdRating
+            // txtWatchCount
             // 
-            this.drpdRating.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.drpdRating.FormattingEnabled = true;
-            this.drpdRating.Items.AddRange(new object[] {
-            "10",
-            "9",
-            "8",
-            "7",
-            "6",
-            "5",
-            "4",
-            "3",
-            "2",
-            "1"});
-            this.drpdRating.Location = new System.Drawing.Point(19, 92);
-            this.drpdRating.MaxDropDownItems = 10;
-            this.drpdRating.Name = "drpdRating";
-            this.drpdRating.Size = new System.Drawing.Size(121, 24);
-            this.drpdRating.TabIndex = 13;
+            this.txtWatchCount.Location = new System.Drawing.Point(222, 90);
+            this.txtWatchCount.Name = "txtWatchCount";
+            this.txtWatchCount.Size = new System.Drawing.Size(67, 22);
+            this.txtWatchCount.TabIndex = 14;
             // 
             // MoreInfoForm
             // 
@@ -236,5 +245,6 @@
         private System.Windows.Forms.Button btnSelectPoster;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ComboBox drpdRating;
+        private System.Windows.Forms.TextBox txtWatchCount;
     }
 }
